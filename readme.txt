@@ -22,6 +22,8 @@ You can even upload and use your own custom images if you wish!
 
 Visit <a href="http://make.simplesharebuttons.com" target="_blank" rel="nofollow">make.simplesharebuttons.com</a> to make your own custom-coloured share buttons!
 
+I have now uploaded the source to GitHub so please use this to suggest any fixes/improvements! https://github.com/davidsneal/simplesharebuttons
+
 The Simple Share Buttons Adder utilises features that, as a WordPress user, you will be familiar with. A self-explanatory administration screen will have you showing your Share Buttons on your posts and pages in no time!
 
 == Installation ==
@@ -61,6 +63,10 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 9. Use the widget option to add share buttons!
 
 == Changelog ==
+
+= 3.4 =
+* An attempted fix for a reported broken Pinterest count, massive thanks to http://wordpress.org/support/profile/crookedmicks for taking the time to find this and let us know
+* Sadly I have far less time than I used to have in order to maintain this plugin. I have now uploaded the source to GitHub so please use this to suggest any fixes/improvements! https://github.com/davidsneal/simplesharebuttons
 
 = 3.3 =
 * You can now make your own custom-coloured share icons here for free - http://make.simplesharebuttons.com/ !!

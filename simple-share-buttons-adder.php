@@ -3,7 +3,7 @@
 Plugin Name: Simple Share Buttons Adder
 Plugin URI: http://www.simplesharebuttons.com
 Description: A simple plugin that enables you to add share buttons to all of your posts and/or pages.
-Version: 3.3
+Version: 3.4
 Author: David S. Neal
 Author URI: http://www.davidsneal.co.uk/
 License: GPLv2
@@ -35,7 +35,7 @@ GNU General Public License for more details.
 	function ssba_activate() {
 	
 		// insert default options for ssba
-		add_option('ssba_version', 				'3.3');
+		add_option('ssba_version', 				'3.4');
 		add_option('ssba_image_set', 			'somacro');
 		add_option('ssba_size', 				'35');
 		add_option('ssba_pages',				'');
@@ -317,8 +317,8 @@ GNU General Public License for more details.
 		// query the db for current ssba settings
 		$arrSettings = get_ssba_settings();
 
-		// check if not yet updated to 3.3
-		if ($arrSettings['ssba_version'] != '3.3') {
+		// check if not yet updated to 3.4
+		if ($arrSettings['ssba_version'] != '3.4') {
 		
 			// include then run the upgrade script
 			include_once (plugin_dir_path(__FILE__) . '/inc/ssba_upgrade.php');
