@@ -1147,8 +1147,8 @@ function ssba_pinterest($arrSettings, $urlCurrentPage, $strPageTitle, $booShowSh
 function getPinterestShareCount($urlCurrentPage) {
 
 	// get results from pinterest and return the number of shares
-    $htmlPinterestShareDetails = file_get_contents('http://api.pinterest.com/v1/urls/count.json?callback=&url=' . $urlCurrentPage);
-    $htmlPinterestShareDetails = str_replace('(', '', $htmlPinterestShareDetails);
+    $htmlPinterestShareDetails = file_get_contents('http://api.pinterest.com/v1/urls/count.json?url=' . $urlCurrentPage);
+    $htmlPinterestShareDetails = str_replace('receiveCount(', '', $htmlPinterestShareDetails);
     $htmlPinterestShareDetails = str_replace(')', '', $htmlPinterestShareDetails);
     $arrPinterestShareDetails = json_decode($htmlPinterestShareDetails, true);
     $intPinterestShareCount =  $arrPinterestShareDetails['count'];
