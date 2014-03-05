@@ -527,7 +527,7 @@ CODE;
 		$htmlShareButtonsForm .= '</form>';
 		
 	// close form cell and open author one
-	$htmlShareButtonsForm .= '</td><td style="vertical-align: top; position: fixed;">';	
+	$htmlShareButtonsForm .= '</td><td style="vertical-align: top;">';	
 	
 	// author div
 	$htmlShareButtonsForm .= '	<div class="ssba-box ssba-shadow">
