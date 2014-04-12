@@ -4,7 +4,7 @@ Donate link: http://www.simplesharebuttons.com/donate/
 Tags: share buttons, facebook, twitter, google+, share, share links, stumble upon, linkedin, pinterest
 Requires at least: 3.5.1
 Tested up to: 3.8
-Stable tag: 3.3
+Stable tag: 3.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,6 +63,17 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 9. Use the widget option to add share buttons!
 
 == Changelog ==
+
+= 3.5 =
+* Due to an extremely generous donation, a Print button has been added!
+* Changed div from an ID to a class. Please note if your CSS points to #ssba, you must update this to .ssba
+* Removed extra a couple of extra double quotes
+* Improved/more descriptive 'alt' tags for the visually-impaired
+* Improved code for placement checking
+* Error reporting switched back on for developers trying to debug their code. If you have any errors displayed, please report them. Then temporarily hide by removing the two double slashes on line 24 of simple-share-buttons-adder.php - //error_reporting(0);
+* Obsolete 'center' tags relaced with a div styled with text-align:center
+* Whitespace of email sharing option fixed with %20
+* & replaced with &amp; to fix validation errors
 
 = 3.4 =
 * An attempted fix for a reported broken Pinterest count, massive thanks to http://wordpress.org/support/profile/crookedmicks for taking the time to find this and let us know

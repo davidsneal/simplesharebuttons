@@ -19,6 +19,7 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com/wordpress-faq/" target="_blank">FAQ</a>';
 			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com/showcase/" target="_blank">Showcase</a>';
 			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com/donate/" target="_blank">Donate</a>';
+			$htmlShareButtonsForm .= '<a href="https://github.com/davidsneal/simplesharebuttons" target="_blank">GitHub</a>';
 		$htmlShareButtonsForm .= '</div>';
 		
 	// close header
@@ -535,7 +536,7 @@ CODE;
 										<div class="author-shortcodes">
 											<div class="author-inner">
 												<div class="author-image">
-													<img src="' . plugins_url() . '/simple-share-buttons-adder/images/david.jpg" style="float: left; margin-right: 10px;" alt="">
+													<img src="' . plugins_url() . '/simple-share-buttons-adder/images/david.png" style="float: left; margin-right: 10px;" alt="">
 													<div class="author-overlay"></div>
 												</div> <!-- .author-image --> 
 												<div class="author-info">
@@ -622,7 +623,7 @@ function getAvailableSSBA($strSelectedSSBA) {
 	$arrSelectedSSBA = explode(',', $strSelectedSSBA);
 	
 	// create array of all available buttons
-	$arrAllAvailableSSBA = array('buffer', 'diggit', 'email', 'facebook', 'flattr', 'google', 'linkedin', 'pinterest', 'reddit', 'stumbleupon', 'tumblr', 'twitter');
+	$arrAllAvailableSSBA = array('buffer', 'diggit', 'email', 'facebook', 'flattr', 'google', 'linkedin', 'pinterest', 'print', 'reddit', 'stumbleupon', 'tumblr', 'twitter');
 	
 	// explode saved include list and add to a new array
 	$arrAvailableSSBA = array_diff($arrAllAvailableSSBA, $arrSelectedSSBA);
