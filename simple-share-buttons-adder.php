@@ -439,13 +439,13 @@ GNU General Public License for more details.
 		if ($arrSettings['ssba_custom_styles'] == '') {
 		
 			// use set options
-			$htmlSSBAStyle .= '	#ssba {
+			$htmlSSBAStyle .= '	.ssba {
 										' . ($arrSettings['ssba_div_padding'] 			!= ''	? 'padding: ' 	. $arrSettings['ssba_div_padding'] . 'px;' : NULL) . '
 										' . ($arrSettings['ssba_border_width'] 			!= ''	? 'border: ' . $arrSettings['ssba_border_width'] . 'px solid ' 	. $arrSettings['ssba_div_border'] . ';' : NULL) . '
 										' . ($arrSettings['ssba_div_background'] 		!= ''	? 'background-color: ' 	. $arrSettings['ssba_div_background'] . ';' : NULL) . '
 										' . ($arrSettings['ssba_div_rounded_corners'] 	== 'Y'	? '-moz-border-radius: 10px; -webkit-border-radius: 10px; -khtml-border-radius: 10px;  border-radius: 10px; -o-border-radius: 10px;' : NULL) . '
 									}
-									#ssba img		
+									.ssba img		
 									{ 	
 										width: ' . $arrSettings['ssba_size'] . 'px !important;
 										padding: ' . $arrSettings['ssba_padding'] . 'px;
@@ -454,7 +454,7 @@ GNU General Public License for more details.
 										display: inline;
 										vertical-align: middle;
 									}
-									#ssba, #ssba a		
+									.ssba, .ssba a		
 									{
 										' . ($arrSettings['ssba_div_background'] == ''	? 'background: none;' : NULL) . '
 										' . ($arrSettings['ssba_font_family'] 	!= ''	? 'font-family: ' . $arrSettings['ssba_font_family'] . ';' : NULL) . '
