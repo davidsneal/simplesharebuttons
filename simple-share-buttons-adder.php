@@ -1211,11 +1211,7 @@ function ssba_email($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShareC
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-<<<<<<< HEAD
 		$htmlShareButtons .= '<img title="Email" class="ssba" alt="Email this to someone" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/email.png" />';
-=======
-		$htmlShareButtons .= '<img title="Email" class="ssba" alt="Email to someone" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/email.png" />';
->>>>>>> 359e9e7fe75ecd52d0a4062c6ea609a2019eb823
 	}
 	
 	// if using custom images
