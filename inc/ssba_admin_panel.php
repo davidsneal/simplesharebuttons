@@ -157,6 +157,13 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 						$htmlShareButtonsForm .= '</td>';
 					$htmlShareButtonsForm .= '</tr>';
 					$htmlShareButtonsForm .= '<tr valign="top">';
+						$htmlShareButtonsForm .= '<th scope="row" style="width: 120px;"><label>Print:</label></th>';
+						$htmlShareButtonsForm .= '<td>';
+						$htmlShareButtonsForm .= '<input id="ssba_custom_print" type="text" size="50" name="ssba_custom_print" value="' . (isset($arrSettings['ssba_custom_print']) ? $arrSettings['ssba_custom_print'] : NULL)  . '" />';
+						$htmlShareButtonsForm .= '<input id="upload_print_button" data-ssba-input="ssba_custom_print" class="button customUpload" type="button" value="Upload Image" />';
+						$htmlShareButtonsForm .= '</td>';
+					$htmlShareButtonsForm .= '</tr>';
+					$htmlShareButtonsForm .= '<tr valign="top">';
 						$htmlShareButtonsForm .= '<th scope="row" style="width: 120px;"><label>Reddit:</label></th>';
 						$htmlShareButtonsForm .= '<td>';
 						$htmlShareButtonsForm .= '<input id="ssba_custom_reddit" type="text" size="50" name="ssba_custom_reddit" value="' . (isset($arrSettings['ssba_custom_reddit']) ? $arrSettings['ssba_custom_reddit'] : NULL)  . '" />';
