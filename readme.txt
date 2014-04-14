@@ -64,6 +64,10 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 
 == Changelog ==
 
+= 3.6 =
+* Errors removed, too many thousands of different possible server configurations out there!
+* Custom Print button upload option added.
+
 = 3.5 =
 * Due to an extremely generous donation, a Print button has been added!
 * Changed div from an ID to a class. Please note if your CSS points to #ssba, you must update this to .ssba
