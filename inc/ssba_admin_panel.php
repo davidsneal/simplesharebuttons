@@ -218,6 +218,12 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 							$htmlShareButtonsForm .= '<p class="description">Drag, drop and reorder those buttons that you wish to include.</p>';
 						$htmlShareButtonsForm .= '</td>';
 					$htmlShareButtonsForm .= '</tr>';
+					$htmlShareButtonsForm .= '<tr valign="top">';
+						$htmlShareButtonsForm .= '<th scope="row" style="width: 120px;"><label>Share Text Link:</label></th>';
+						$htmlShareButtonsForm .= '<td>';
+						$htmlShareButtonsForm .= 'Share text links to simplesharebuttons.com&nbsp;<input type="checkbox" name="ssba_link_to_ssb" id="ssba_link_to_ssb" ' . ($arrSettings['ssba_link_to_ssb'] == 'Y'   ? 'checked' : NULL) . ' value="Y" />';
+						$htmlShareButtonsForm .= '<p class="description">Please do check this box if you are feeling kind &#58;&#41;</p></td>';
+					$htmlShareButtonsForm .= '</tr>';
 				$htmlShareButtonsForm .= '</table>';
 				$htmlShareButtonsForm .= '</div>';
 			$htmlShareButtonsForm .= '</div>';
@@ -344,7 +350,7 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 						$htmlShareButtonsForm .= '<td>';
 							$htmlShareButtonsForm .= <<<CODE
 													<h3>Default CSS</h3>
-													#ssba img</br>	
+													.ssba img</br>	
 													{ 	</br>
 														width: 35px;</br>
 														padding: 6px;</br>
@@ -353,10 +359,11 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 														display: inline;</br>
 														vertical-align: middle;</br>
 													}</br></br>
-													#ssba, #ssba a		</br>
+													.ssba, .ssba a		</br>
 													{</br>
 														font-family: Indie Flower;</br>
 														font-size: 	20px;</br>
+														text-decoration: none;</br>
 													}
 CODE;
 						$htmlShareButtonsForm .= '</td>';
@@ -489,10 +496,15 @@ CODE;
 					$htmlShareButtonsForm .= '<p class="description">Unchecking this box will make links open in the same window</p></td>';
 				$htmlShareButtonsForm .= '</tr>';
 				$htmlShareButtonsForm .= '<tr valign="top">';
-					$htmlShareButtonsForm .= '<th scope="row" style="width: 120px;"><label>Share Text Link:</label></th>';
+					$htmlShareButtonsForm .= '<th scope="row" style="width: 120px;"><label>Links:</label></th>';
 					$htmlShareButtonsForm .= '<td>';
-					$htmlShareButtonsForm .= 'Share text links to simplesharebuttons.com&nbsp;<input type="checkbox" name="ssba_link_to_ssb" id="ssba_link_to_ssb" ' . ($arrSettings['ssba_link_to_ssb'] == 'Y'   ? 'checked' : NULL) . ' value="Y" />';
-					$htmlShareButtonsForm .= '<p class="description">Leave this checked if you are feeling kind &#58;&#41;</p></td>';
+					$htmlShareButtonsForm .= 'Add rel="nofollow" to links&nbsp;<input type="checkbox" name="ssba_rel_nofollow" id="ssba_rel_nofollow" ' . ($arrSettings['ssba_rel_nofollow'] == 'Y'   ? 'checked' : NULL) . ' value="Y" />';
+					$htmlShareButtonsForm .= '<p class="description">Check this box to add rel="nofollow" to all share links</p></td>';
+				$htmlShareButtonsForm .= '</tr>';
+				$htmlShareButtonsForm .= '<tr valign="top">';
+					$htmlShareButtonsForm .= '<th scope="row" style="width: 120px;"><label>Widget text:</label></th>';
+					$htmlShareButtonsForm .= '<td><input type="text" name="ssba_widget_text" style="width: 250px;" id="ssba_widget_text" value="' . $arrSettings['ssba_widget_text'] . '" />';
+					$htmlShareButtonsForm .= '<p class="description">Add custom share text when used as a widget</p></td>';
 				$htmlShareButtonsForm .= '</tr>';
 				$htmlShareButtonsForm .= '<tr><td><h3>Email</h3></td></tr>';
 				$htmlShareButtonsForm .= '<tr valign="top">';

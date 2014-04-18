@@ -3,7 +3,7 @@ Contributors: DavidoffNeal
 Donate link: http://www.simplesharebuttons.com/donate/
 Tags: share buttons, facebook, twitter, google+, share, share links, stumble upon, linkedin, pinterest
 Requires at least: 3.5.1
-Tested up to: 3.8.2
+Tested up to: 3.9
 Stable tag: 3.5
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -14,13 +14,13 @@ A simple plugin that enables you to add share buttons to all of your posts and/o
 
 The Simple Share Buttons Adder does exactly what it says on the tin – adds share buttons to all of your posts and pages, simply.
 
-This plugin has a dedicated website! Check out <a href="http://www.simplesharebuttons.com" target="_blank" rel="nofollow">www.simplesharebuttons.com</a>
+This plugin has a dedicated website! Check out <a href="http://www.simplesharebuttons.com" target="_blank">www.simplesharebuttons.com</a>
 
 No hotlinking to another website to slow downloading or for tracking use, it's simple, as promised.
 
 You can even upload and use your own custom images if you wish!
 
-Visit <a href="http://make.simplesharebuttons.com" target="_blank" rel="nofollow">make.simplesharebuttons.com</a> to make your own custom-coloured share buttons!
+Visit <a href="http://make.simplesharebuttons.com" target="_blank">make.simplesharebuttons.com</a> to make your own custom-coloured share buttons!
 
 I have now uploaded the source to GitHub so please use this to suggest any fixes/improvements! https://github.com/davidsneal/simplesharebuttons
 
@@ -28,9 +28,9 @@ The Simple Share Buttons Adder utilises features that, as a WordPress user, you 
 
 == Installation ==
 
-For full configuration instructions<a href="http://www.simplesharebuttons.com/wordpress/wordpress-configuration/" target="_blank" rel="nofollow"> visit this page</a>
+For full configuration instructions<a href="http://www.simplesharebuttons.com/wordpress/wordpress-configuration/" target="_blank"> visit this page</a>
 
-Visit <a href="http://make.simplesharebuttons.com" target="_blank" rel="nofollow">make.simplesharebuttons.com</a> to make your own custom-coloured share buttons!
+Visit <a href="http://make.simplesharebuttons.com" target="_blank">make.simplesharebuttons.com</a> to make your own custom-coloured share buttons!
 
 1. Upload the 'simple-share-buttons-adder' folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
@@ -42,9 +42,9 @@ Visit <a href="http://make.simplesharebuttons.com" target="_blank" rel="nofollow
 
 == Frequently Asked Questions ==
 
-This plugin has a dedicated website! Check out the<a href="www.simplesharebuttons.com/wordpress-faq/" target="_blank" rel="nofollow"> FAQs page</a>
+This plugin has a dedicated website! Check out the<a href="www.simplesharebuttons.com/wordpress-faq/" target="_blank"> FAQs page</a>
 
-Visit <a href="http://make.simplesharebuttons.com" target="_blank" rel="nofollow">make.simplesharebuttons.com</a> to make your own custom-coloured share buttons!
+Visit <a href="http://make.simplesharebuttons.com" target="_blank">make.simplesharebuttons.com</a> to make your own custom-coloured share buttons!
 
 Please visit the <a href="http://www.simplesharebuttons.com/forums/forum/wordpress-forum/">WordPress Support Forum</a> for any assistance you may need.
 
@@ -63,6 +63,19 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 9. Use the widget option to add share buttons!
 
 == Changelog ==
+
+= 3.8 =
+* CSS now only shows when it is required (thanks goes out to https://github.com/emilyljohnson)
+* Add rel="nofollow" option added
+* Add different text for the widget area if you wish
+* Flattr bug fix, and title added (thanks to https://github.com/Sena for that)
+* Remove 'tooltip' style hover to share text link
+* Fix more validation errors, please check any custom CSS you may have applied to links with IDs
+
+= 3.7 =
+* Error reporting on if WP_DEBUG is set to true
+* Share text no longer links to simplesharebuttons.com by default
+* There will more improvements for 3.8, this version is a requirement from WordPress
 
 = 3.6 =
 * Errors removed, too many thousands of different possible server configurations out there!
