@@ -288,23 +288,29 @@ GNU General Public License for more details.
 		// get settings
 		$arrSettings = get_ssba_settings();
 		
-		// if reenie beenie font is selected
-		if ($arrSettings['ssba_font_family'] == 'Indie Flower') {
-	
-			// font scripts 
-			wp_register_style('ssbaFont', 'http://fonts.googleapis.com/css?family=Indie+Flower');
-			wp_enqueue_style( 'ssbaFont');
-		} else if ($arrSettings['ssba_font_family'] == 'Reenie Beanie') {
+		// only include CSS if needed
+		if (is_page() && $arrSettings['ssba_pages'] == 'Y' || is_single() && $arrSettings['ssba_posts'] == 'Y' || is_category() && $arrSettings['ssba_cats_archs'] == 'Y' || is_archive() && $arrSettings['ssba_cats_archs'] == 'Y' || is_home() && $arrSettings['ssba_homepage'] == 'Y' || $booShortCode == TRUE) { 
+		
+			// if reenie beenie font is selected
+			if ($arrSettings['ssba_font_family'] == 'Indie Flower') {
+		
+				// font scripts 
+				wp_register_style('ssbaFont', 'http://fonts.googleapis.com/css?family=Indie+Flower');
+				wp_enqueue_style( 'ssbaFont');
+			} else if ($arrSettings['ssba_font_family'] == 'Reenie Beanie') {
+				
+				// font scripts 
+				wp_register_style('ssbaFont', 'http://fonts.googleapis.com/css?family=Reenie+Beanie');
+				wp_enqueue_style( 'ssbaFont');
 			
-			// font scripts 
-			wp_register_style('ssbaFont', 'http://fonts.googleapis.com/css?family=Reenie+Beanie');
-			wp_enqueue_style( 'ssbaFont');
+			}
+		
+			// register and enqueue css styles
+			wp_register_style('ssba-page-styles', plugins_url('/css/page-style.css', __FILE__ ));
+			wp_enqueue_style('ssba-page-styles');
 		
 		}
-	
-		// register and enqueue css styles
-		wp_register_style('ssba-page-styles', plugins_url('/css/page-style.css', __FILE__ ));
-		wp_enqueue_style('ssba-page-styles');
+		
 	}
 	
 	// call scripts add function
@@ -432,131 +438,137 @@ GNU General Public License for more details.
 		// query the db for current ssba settings
 		$arrSettings = get_ssba_settings();
 	
-		// css style
-		$htmlSSBAStyle .= '<style type="text/css">';
-		
-		// check if custom styles haven't been set
-		if ($arrSettings['ssba_custom_styles'] == '') {
-		
-			// use set options
-			$htmlSSBAStyle .= '	.ssba {
-										' . ($arrSettings['ssba_div_padding'] 			!= ''	? 'padding: ' 	. $arrSettings['ssba_div_padding'] . 'px;' : NULL) . '
-										' . ($arrSettings['ssba_border_width'] 			!= ''	? 'border: ' . $arrSettings['ssba_border_width'] . 'px solid ' 	. $arrSettings['ssba_div_border'] . ';' : NULL) . '
-										' . ($arrSettings['ssba_div_background'] 		!= ''	? 'background-color: ' 	. $arrSettings['ssba_div_background'] . ';' : NULL) . '
-										' . ($arrSettings['ssba_div_rounded_corners'] 	== 'Y'	? '-moz-border-radius: 10px; -webkit-border-radius: 10px; -khtml-border-radius: 10px;  border-radius: 10px; -o-border-radius: 10px;' : NULL) . '
-									}
-									.ssba img		
-									{ 	
-										width: ' . $arrSettings['ssba_size'] . 'px !important;
-										padding: ' . $arrSettings['ssba_padding'] . 'px;
-										border:  0;
-										box-shadow: none !important;
-										display: inline;
-										vertical-align: middle;
-									}
-									.ssba, .ssba a		
-									{
-										' . ($arrSettings['ssba_div_background'] == ''	? 'background: none;' : NULL) . '
-										' . ($arrSettings['ssba_font_family'] 	!= ''	? 'font-family: ' . $arrSettings['ssba_font_family'] . ';' : NULL) . '
-										' . ($arrSettings['ssba_font_size']		!= ''	? 'font-size: 	' . $arrSettings['ssba_font_size'] . 'px;' : NULL) . '
-										' . ($arrSettings['ssba_font_color'] 	!= ''	? 'color: 		' . $arrSettings['ssba_font_color'] . '!important;' : NULL) . '
-										' . ($arrSettings['ssba_font_weight'] 	!= ''	? 'font-weight: ' . $arrSettings['ssba_font_weight'] . ';' : NULL) . '
-									}';
-		}
-		
-		// else use set options
-		else {
-
-			// use custom styles
-			$htmlSSBAStyle .= $arrSettings['ssba_custom_styles'];
+		// only include CSS if needed
+		if (is_page() && $arrSettings['ssba_pages'] == 'Y' || is_single() && $arrSettings['ssba_posts'] == 'Y' || is_category() && $arrSettings['ssba_cats_archs'] == 'Y' || is_archive() && $arrSettings['ssba_cats_archs'] == 'Y' || is_home() && $arrSettings['ssba_homepage'] == 'Y' || $booShortCode == TRUE) { 
+	
+			// css style
+			$htmlSSBAStyle .= '<style type="text/css">';
 			
-		}
-		
-		// if counters option is set to Y
-		if ($arrSettings['ssba_show_share_count'] == 'Y') {
-		
-			// if no custom share count css is set
-			if ($arrSettings['ssba_share_count_css'] == '') {
+			// check if custom styles haven't been set
+			if ($arrSettings['ssba_custom_styles'] == '') {
 			
-				// styles that apply to all counter css sets
-				$htmlSSBAStyle .= '.ssba_sharecount:after, .ssba_sharecount:before {
-										right: 100%;
-										border: solid transparent;
-										content: " ";
-										height: 0;
-										width: 0;
-										position: absolute;
-										pointer-events: none;
-									}
-									.ssba_sharecount:after {
-										border-color: rgba(224, 221, 221, 0);
-										border-right-color: #f5f5f5;
-										border-width: 5px;
-										top: 50%;
-										margin-top: -5px;
-									}
-									.ssba_sharecount:before {
-										border-color: rgba(85, 94, 88, 0);
-										border-right-color: #e0dddd;
-										border-width: 6px;
-										top: 50%;
-										margin-top: -6px;
-									}
-									.ssba_sharecount {
-										font: 11px Arial, Helvetica, sans-serif;
-										
-										padding: 5px;
-										-khtml-border-radius: 6px;
-										-o-border-radius: 6px;
-										-webkit-border-radius: 6px;
-										-moz-border-radius: 6px;
-										border-radius: 6px;
-										position: relative;
-										border: 1px solid #e0dddd;';
-		
-				// if default counter style has been chosen
-				if ($arrSettings['ssba_share_count_style'] == 'default') {
-			
-					// style share count
-					$htmlSSBAStyle .= 	'color: #555e58;
-											background: #f5f5f5;
+				// use set options
+				$htmlSSBAStyle .= '	.ssba {
+											' . ($arrSettings['ssba_div_padding'] 			!= ''	? 'padding: ' 	. $arrSettings['ssba_div_padding'] . 'px;' : NULL) . '
+											' . ($arrSettings['ssba_border_width'] 			!= ''	? 'border: ' . $arrSettings['ssba_border_width'] . 'px solid ' 	. $arrSettings['ssba_div_border'] . ';' : NULL) . '
+											' . ($arrSettings['ssba_div_background'] 		!= ''	? 'background-color: ' 	. $arrSettings['ssba_div_background'] . ';' : NULL) . '
+											' . ($arrSettings['ssba_div_rounded_corners'] 	== 'Y'	? '-moz-border-radius: 10px; -webkit-border-radius: 10px; -khtml-border-radius: 10px;  border-radius: 10px; -o-border-radius: 10px;' : NULL) . '
 										}
-										.ssba_sharecount:after {
-											border-right-color: #f5f5f5;
-										}';
-											
-				} elseif ($arrSettings['ssba_share_count_style'] == 'white') {
-				
-					// show white style share counts
-					$htmlSSBAStyle .= 	'color: #555e58;
-											background: #ffffff;
+										.ssba img		
+										{ 	
+											width: ' . $arrSettings['ssba_size'] . 'px !important;
+											padding: ' . $arrSettings['ssba_padding'] . 'px;
+											border:  0;
+											box-shadow: none !important;
+											display: inline;
+											vertical-align: middle;
 										}
-										.ssba_sharecount:after {
-											border-right-color: #ffffff;
+										.ssba, .ssba a		
+										{
+											' . ($arrSettings['ssba_div_background'] == ''	? 'background: none;' : NULL) . '
+											' . ($arrSettings['ssba_font_family'] 	!= ''	? 'font-family: ' . $arrSettings['ssba_font_family'] . ';' : NULL) . '
+											' . ($arrSettings['ssba_font_size']		!= ''	? 'font-size: 	' . $arrSettings['ssba_font_size'] . 'px;' : NULL) . '
+											' . ($arrSettings['ssba_font_color'] 	!= ''	? 'color: 		' . $arrSettings['ssba_font_color'] . '!important;' : NULL) . '
+											' . ($arrSettings['ssba_font_weight'] 	!= ''	? 'font-weight: ' . $arrSettings['ssba_font_weight'] . ';' : NULL) . '
 										}';
-					
-				} elseif ($arrSettings['ssba_share_count_style'] == 'blue') {
-				
-					// show blue style share counts
-					$htmlSSBAStyle .= 	'color: #ffffff;
-											background: #42a7e2;
-										}
-										.ssba_sharecount:after {
-											border-right-color: #42a7e2;
-										}';
-				}
-			} else {
-			
-				// custom style
-				$htmlSSBAStyle .= $arrSettings['ssba_share_count_css'];
 			}
-		}
+			
+			// else use set options
+			else {
+	
+				// use custom styles
+				$htmlSSBAStyle .= $arrSettings['ssba_custom_styles'];
+				
+			}
+			
+			// if counters option is set to Y
+			if ($arrSettings['ssba_show_share_count'] == 'Y') {
+			
+				// if no custom share count css is set
+				if ($arrSettings['ssba_share_count_css'] == '') {
+				
+					// styles that apply to all counter css sets
+					$htmlSSBAStyle .= '.ssba_sharecount:after, .ssba_sharecount:before {
+											right: 100%;
+											border: solid transparent;
+											content: " ";
+											height: 0;
+											width: 0;
+											position: absolute;
+											pointer-events: none;
+										}
+										.ssba_sharecount:after {
+											border-color: rgba(224, 221, 221, 0);
+											border-right-color: #f5f5f5;
+											border-width: 5px;
+											top: 50%;
+											margin-top: -5px;
+										}
+										.ssba_sharecount:before {
+											border-color: rgba(85, 94, 88, 0);
+											border-right-color: #e0dddd;
+											border-width: 6px;
+											top: 50%;
+											margin-top: -6px;
+										}
+										.ssba_sharecount {
+											font: 11px Arial, Helvetica, sans-serif;
+											
+											padding: 5px;
+											-khtml-border-radius: 6px;
+											-o-border-radius: 6px;
+											-webkit-border-radius: 6px;
+											-moz-border-radius: 6px;
+											border-radius: 6px;
+											position: relative;
+											border: 1px solid #e0dddd;';
+			
+					// if default counter style has been chosen
+					if ($arrSettings['ssba_share_count_style'] == 'default') {
+				
+						// style share count
+						$htmlSSBAStyle .= 	'color: #555e58;
+												background: #f5f5f5;
+											}
+											.ssba_sharecount:after {
+												border-right-color: #f5f5f5;
+											}';
+												
+					} elseif ($arrSettings['ssba_share_count_style'] == 'white') {
+					
+						// show white style share counts
+						$htmlSSBAStyle .= 	'color: #555e58;
+												background: #ffffff;
+											}
+											.ssba_sharecount:after {
+												border-right-color: #ffffff;
+											}';
+						
+					} elseif ($arrSettings['ssba_share_count_style'] == 'blue') {
+					
+						// show blue style share counts
+						$htmlSSBAStyle .= 	'color: #ffffff;
+												background: #42a7e2;
+											}
+											.ssba_sharecount:after {
+												border-right-color: #42a7e2;
+											}';
+					}
+				} else {
+				
+					// custom style
+					$htmlSSBAStyle .= $arrSettings['ssba_share_count_css'];
+				}
+			}
+			
+			// close style tag
+			$htmlSSBAStyle .= '</style>';
+			
+			// return
+			echo $htmlSSBAStyle;
 		
-		// close style tag
-		$htmlSSBAStyle .= '</style>';
+		} // end conditional CSS
 		
-		// return
-		echo $htmlSSBAStyle;
 	}
 	
 	// --------- SHARE BUTTONS ------------ //
