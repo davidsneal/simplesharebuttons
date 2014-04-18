@@ -1239,8 +1239,8 @@ function ssba_flattr($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 	}
 
 	// flattr share link
-	$htmlShareButtons .= '<a id="ssba_flattr_share" href="https://flattr.com/submit/auto?\user_id=' . $arrSettings['ssba_flattr_user_id'] . '&amp;url=' . $urlCurrentPage . '" ' . ($arrSettings['ssba_share_new_window'] == 'Y' ? 'target="_blank"' : NULL) . '>';
-	
+	$htmlShareButtons .= '<a id="ssba_flattr_share" href="https://flattr.com/submit/auto?user_id=' . $arrSettings['ssba_flattr_user_id'] . '&amp;title=' . $strPageTitle . '&amp;url=' . $urlCurrentPage . '" ' . ($arrSettings['ssba_share_new_window'] == 'Y' ? 'target="_blank"' : NULL) . '>';
+
 	// if image set is not custom
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
