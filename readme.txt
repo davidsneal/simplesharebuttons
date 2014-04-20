@@ -4,7 +4,7 @@ Donate link: http://www.simplesharebuttons.com/donate/
 Tags: share buttons, facebook, twitter, google+, share, share links, stumble upon, linkedin, pinterest
 Requires at least: 3.5.1
 Tested up to: 3.9
-Stable tag: 3.5
+Stable tag: 3.8
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,12 +65,14 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 == Changelog ==
 
 = 3.8 =
+* A serious cleanup of previous small wanrings/notices
 * CSS now only shows when it is required (thanks goes out to https://github.com/emilyljohnson)
 * Add rel="nofollow" option added
 * Add different text for the widget area if you wish
 * Flattr bug fix, and title added (thanks to https://github.com/Sena for that)
 * Remove 'tooltip' style hover to share text link
 * Fix more validation errors, please check any custom CSS you may have applied to links with IDs
+* WHAT'S NEXT?? Well providing all goes well with this release, it shall include responsive icon buttons!!
 
 = 3.7 =
 * Error reporting on if WP_DEBUG is set to true
