@@ -10,7 +10,7 @@ function upgrade_ssba($arrSettings) {
 	add_option('ssba_rel_nofollow',	'');
 
 	// update version number
-	update_option('ssba_version', '3.8');
+	update_option('ssba_version', '3.9');
 }
 	
 ?>

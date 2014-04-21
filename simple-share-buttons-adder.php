@@ -3,7 +3,7 @@
 Plugin Name: Simple Share Buttons Adder
 Plugin URI: http://www.simplesharebuttons.com
 Description: A simple plugin that enables you to add share buttons to all of your posts and/or pages.
-Version: 3.8
+Version: 3.9
 Author: David S. Neal
 Author URI: http://www.davidsneal.co.uk/
 License: GPLv2
@@ -37,7 +37,7 @@ GNU General Public License for more details.
 	function ssba_activate() {
 	
 		// insert default options for ssba
-		add_option('ssba_version', 				'3.8');
+		add_option('ssba_version', 				'3.9');
 		add_option('ssba_image_set', 			'somacro');
 		add_option('ssba_size', 				'35');
 		add_option('ssba_pages',				'');
@@ -295,7 +295,7 @@ GNU General Public License for more details.
 		$arrSettings = get_ssba_settings();
 		
 		// only include CSS if needed
-		if (is_page() && $arrSettings['ssba_pages'] == 'Y' || is_single() && $arrSettings['ssba_posts'] == 'Y' || is_category() && $arrSettings['ssba_cats_archs'] == 'Y' || is_archive() && $arrSettings['ssba_cats_archs'] == 'Y' || is_home() && $arrSettings['ssba_homepage'] == 'Y' || $booShortCode == TRUE) { 
+		//if (is_page() && $arrSettings['ssba_pages'] == 'Y' || is_single() && $arrSettings['ssba_posts'] == 'Y' || is_category() && $arrSettings['ssba_cats_archs'] == 'Y' || is_archive() && $arrSettings['ssba_cats_archs'] == 'Y' || is_home() && $arrSettings['ssba_homepage'] == 'Y' || $booShortCode == TRUE) { 
 		
 			// if reenie beenie font is selected
 			if ($arrSettings['ssba_font_family'] == 'Indie Flower') {
@@ -309,7 +309,7 @@ GNU General Public License for more details.
 				wp_register_style('ssbaFont', 'http://fonts.googleapis.com/css?family=Reenie+Beanie');
 				wp_enqueue_style( 'ssbaFont');
 			}		
-		}
+		//}
 		
 	}
 	
@@ -325,8 +325,8 @@ GNU General Public License for more details.
 		// query the db for current ssba settings
 		$arrSettings = get_ssba_settings();
 
-		// check if not yet updated to 3.8
-		if ($arrSettings['ssba_version'] != '3.8') {
+		// check if not yet updated to 3.9
+		if ($arrSettings['ssba_version'] != '3.9') {
 		
 			// include then run the upgrade script
 			include_once (plugin_dir_path(__FILE__) . '/inc/ssba_upgrade.php');
@@ -441,7 +441,7 @@ GNU General Public License for more details.
 		$arrSettings = get_ssba_settings();
 	
 		// only include CSS if needed
-		if (is_page() && $arrSettings['ssba_pages'] == 'Y' || is_single() && $arrSettings['ssba_posts'] == 'Y' || is_category() && $arrSettings['ssba_cats_archs'] == 'Y' || is_archive() && $arrSettings['ssba_cats_archs'] == 'Y' || is_home() && $arrSettings['ssba_homepage'] == 'Y' || $booShortCode == TRUE) { 
+		//if () { 
 	
 			// css style
 			$htmlSSBAStyle = '<style type="text/css">';
@@ -570,7 +570,7 @@ GNU General Public License for more details.
 			// return
 			echo $htmlSSBAStyle;
 		
-		} // end conditional CSS
+		//} // end conditional CSS
 		
 	}
 	
