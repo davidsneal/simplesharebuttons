@@ -3,7 +3,7 @@
 Plugin Name: Simple Share Buttons Adder
 Plugin URI: http://www.simplesharebuttons.com
 Description: A simple plugin that enables you to add share buttons to all of your posts and/or pages.
-Version: 3.9
+Version: 4.0
 Author: David S. Neal
 Author URI: http://www.davidsneal.co.uk/
 License: GPLv2
@@ -37,7 +37,7 @@ GNU General Public License for more details.
 	function ssba_activate() {
 	
 		// insert default options for ssba
-		add_option('ssba_version', 				'3.9');
+		add_option('ssba_version', 				'4.0');
 		add_option('ssba_image_set', 			'somacro');
 		add_option('ssba_size', 				'35');
 		add_option('ssba_pages',				'');
@@ -59,7 +59,7 @@ GNU General Public License for more details.
 		add_option('ssba_share_count_style',	'default');
 		add_option('ssba_share_count_css',		'');
 		add_option('ssba_share_count_once',		'Y');
-		add_option('ssba_widget_text',			'Y');
+		add_option('ssba_widget_text',			'');
 		add_option('ssba_rel_nofollow',			'');
 		
 		// share container
@@ -325,13 +325,13 @@ GNU General Public License for more details.
 		// query the db for current ssba settings
 		$arrSettings = get_ssba_settings();
 
-		// check if not yet updated to 3.9
-		if ($arrSettings['ssba_version'] != '3.9') {
+		// check if not yet updated to 4.0
+		if ($arrSettings['ssba_version'] != '4.0') {
 		
-			// include then run the upgrade script
-			include_once (plugin_dir_path(__FILE__) . '/inc/ssba_upgrade.php');
+			// run the upgrade function
 			upgrade_ssba($arrSettings);		
 		}
+		
 		
 		// check if any buttons have been selected
 		if ($arrSettings['ssba_selected_buttons'] == '' && $_GET['page'] != 'simple-share-buttons-adder') {
@@ -339,6 +339,20 @@ GNU General Public License for more details.
 			// output a warning that buttons need configuring and provide a link to settings
 			echo '<div id="ssba-warning" class="updated fade"><p>Your <strong>Simple Share Buttons</strong> need <a href="admin.php?page=simple-share-buttons-adder"><strong>configuration</strong></a> before they will appear. <strong>View the tutorial video <a href="http://www.youtube.com/watch?v=p03B4C3QMzs" target="_blank">here</a></strong></p></div>';
 		}
+	}
+	
+	// the upgrade function
+	function upgrade_ssba($arrSettings) {
+
+		// add print button
+		add_option('ssba_custom_print', '');
+		
+		// new for 3.8
+		add_option('ssba_widget_text',	'');
+		add_option('ssba_rel_nofollow',	'');
+	
+		// update version number
+		update_option('ssba_version', '4.0');
 	}
 
 	// --------- SETTINGS PAGE ------------ //
@@ -366,7 +380,7 @@ GNU General Public License for more details.
 			update_option('ssba_posts', 				(isset($_POST['ssba_posts']) ? $_POST['ssba_posts'] : NULL));
 			update_option('ssba_cats_archs', 			(isset($_POST['ssba_cats_archs']) ? $_POST['ssba_cats_archs'] : NULL));
 			update_option('ssba_homepage', 				(isset($_POST['ssba_homepage']) ? $_POST['ssba_homepage'] : NULL));
-			update_option('ssba_align', 				(isset($_POST['ssba_homepage']) ? $_POST['ssba_homepage'] : NULL));
+			update_option('ssba_align', 				(isset($_POST['ssba_align']) ? $_POST['ssba_align'] : NULL));
 			update_option('ssba_padding', 				$_POST['ssba_padding']);								
 			update_option('ssba_before_or_after', 		$_POST['ssba_before_or_after']);
 			update_option('ssba_custom_styles', 		$_POST['ssba_custom_styles']);
@@ -462,7 +476,7 @@ GNU General Public License for more details.
 											padding: ' . $arrSettings['ssba_padding'] . 'px;
 											border:  0;
 											box-shadow: none !important;
-											display: inline;
+											display: inline !important;
 											vertical-align: middle;
 										}
 										.ssba, .ssba a		
@@ -639,7 +653,7 @@ GNU General Public License for more details.
 			$htmlShareButtons = '<!-- I got these buttons from simplesharebuttons.com :) --><div class="ssba">';
 			
 			// center if set so
-			$htmlShareButtons.= ($arrSettings['ssba_align'] == 'center' ? '<div style="text-align:center">' : NULL);
+			$htmlShareButtons.= '<div style="text-align:'.$arrSettings['ssba_align'].'">';
 			
 			// add custom text if set and set to placement above or left
 			if (($strShareText != '') && ($arrSettings['ssba_text_placement'] == 'above' || $arrSettings['ssba_text_placement'] == 'left')) {
@@ -840,6 +854,9 @@ GNU General Public License for more details.
 					$booShowShareCount = false;
 				}
 			}
+		} else {
+			// set show flag to false
+			$booShowShareCount = false;
 		}
 	
 		// for each included button

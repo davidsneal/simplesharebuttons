@@ -1,7 +1,7 @@
 ﻿#ssba-header { 
 background-color: #42a7e2;
 padding: 30px;
-margin: -19px 0 0 -19px;
+margin: -20px 0 0 -20px;
 min-height: 60px;
 }
 
@@ -22,8 +22,9 @@ text-decoration: none;
 }
 
 #ssba-tabs {
+line-height:1.3em;
 height: 40px;
-margin: 0 0 0 -19px;
+margin: 0 0 0 -20px;
 background: #59625c;
 border-top: 1px solid #515953;
 border-bottom: 1px solid #515b55;
@@ -41,8 +42,8 @@ background: #636b66;
 .ssba-selected-tab {
 color: #21759b !important;
 font-weight: bold !important;
-background-color: #ffffff !important;
-border-bottom: 1px solid #ffffff;
+background-color: #f0f0f0 !important;
+border-bottom: 1px solid #f0f0f0;
 }
 
 .ssba-include-list {
