@@ -44,6 +44,9 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 
 <h2>Changelog</h2>
 
+<h3>4.1</h3>
+* Add missing closing div causing trouble
+
 <h3>4.0</h3>
 * I was hoping 4.0 would be really exciting, but there were a few things to fix for you guys :)
 * Align-right option added!
