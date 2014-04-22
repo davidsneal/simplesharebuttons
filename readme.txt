@@ -64,6 +64,9 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 
 == Changelog ==
 
+= 4.1 =
+* Add missing closing div causing trouble
+
 = 4.0 =
 * I was hoping 4.0 would be really exciting, but there were a few things to fix for you guys :)
 * Align-right option added!
