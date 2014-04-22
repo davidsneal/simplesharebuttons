@@ -257,7 +257,7 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 						$htmlShareButtonsForm .= '<option ' . ($arrSettings['ssba_align'] == 'center' ? 'selected="selected"' : NULL) . ' value="center">Center</option>';
 						$htmlShareButtonsForm .= '<option ' . ($arrSettings['ssba_align'] == 'right' ? 'selected="selected"' : NULL) . ' value="right">Right</option>';
 						$htmlShareButtonsForm .= '</select>';
-						$htmlShareButtonsForm .= '<p class="description">Center your buttons if desired</p></td>';
+						$htmlShareButtonsForm .= '<p class="description">Align your buttons they way you wish</p></td>';
 					$htmlShareButtonsForm .= '</tr>';
 					$htmlShareButtonsForm .= '<tr valign="top">';
 						$htmlShareButtonsForm .= '<th scope="row" style="width: 120px;"><label for="ssba_padding">Padding:&nbsp;</label></th>';
