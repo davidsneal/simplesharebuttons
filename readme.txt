@@ -64,6 +64,9 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 
 == Changelog ==
 
+= 4.2 =
+* Fix for those having trouble, error for centered buttons only
+
 = 4.1 =
 * Add missing closing div causing trouble
 

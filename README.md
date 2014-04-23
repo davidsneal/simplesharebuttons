@@ -44,6 +44,9 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 
 <h2>Changelog</h2>
 
+<h3>4.2</h3>
+* Fix for those having trouble, error for centered buttons only
+
 <h3>4.1</h3>
 * Add missing closing div causing trouble
 
