@@ -15,8 +15,6 @@ You can even upload and use your own custom images if you wish!
 
 Visit <a href="http://make.simplesharebuttons.com" target="_blank">make.simplesharebuttons.com</a> to make your own custom-coloured share buttons!
 
-I have now uploaded the source to GitHub so please use this to suggest any fixes/improvements! https://github.com/davidsneal/simplesharebuttons
-
 The Simple Share Buttons Adder utilises features that, as a WordPress user, you will be familiar with. A self-explanatory administration screen will have you showing your Share Buttons on your posts and pages in no time!
 
 <h2>Installation</h2>
@@ -43,6 +41,9 @@ Please visit the <a href="http://www.simplesharebuttons.com/forums/forum/wordpre
 A step by step guide on how to configure this plugin can be found <a href="http://www.simplesharebuttons.com/wordpress/wordpress-configuration/">here</a>.
 
 <h2>Changelog</h2>
+
+<h3>4.3</h3>
+* 
 
 <h3>4.2</h3>
 * Fix for those having trouble, error for centered buttons only
