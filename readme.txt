@@ -1,10 +1,10 @@
-﻿=== Simple Share Buttons Adder ===
+=== Simple Share Buttons Adder ===
 Contributors: DavidoffNeal
 Donate link: http://www.simplesharebuttons.com/donate/
 Tags: share buttons, facebook, twitter, google+, share, share links, stumble upon, linkedin, pinterest
 Requires at least: 3.5.1
 Tested up to: 3.9
-Stable tag: 4.0
+Stable tag: 4.2
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
