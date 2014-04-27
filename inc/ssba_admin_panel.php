@@ -10,7 +10,7 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 	
 		//logo
 		$htmlShareButtonsForm .= '<div id="ssba-logo">';
-			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com" target="_blank"><img src="' . plugins_url() . '/simple-share-buttons-adder/images/simplesharebuttons.png' . '" /></a>';
+			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com" target="_blank"><img src="' . plugins_url() . '/simple-share-buttons-adder/images/simplesharebuttons.png' . '" class="ssba-logo-img" /></a>';
 		$htmlShareButtonsForm .= '</div>';
 		
 		// top nav
@@ -24,7 +24,7 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 		
 	// close header
 	$htmlShareButtonsForm .= '</div>';
-	
+		
 	// tabs
 	$htmlShareButtonsForm .= '<div id="ssba-tabs">';
 	$htmlShareButtonsForm .= '<a id="ssba_tab_basic" class="ssba-selected-tab" href="javascript:;">Basic</a>';
@@ -398,7 +398,7 @@ CODE;
 					$htmlShareButtonsForm .= '<th scope="row" style="width: 120px;"><label>Share Count:</label></th>';
 					$htmlShareButtonsForm .= '<td>';
 					$htmlShareButtonsForm .= 'Show&nbsp;<input type="checkbox" name="ssba_show_share_count" id="ssba_show_share_count" ' . ($arrSettings['ssba_show_share_count'] == 'Y'  ? 'checked' : NULL) . ' value="Y" style="margin-right: 10px;" />';
-					$htmlShareButtonsForm .= '<p class="description">Check the box if you wish to display a share count for those sites that it is available.</br>Note that enabling this option will slow down the loading of any pages that use share buttons.</p></td>';
+					$htmlShareButtonsForm .= '<p class="description">Check the box if you wish to display a share count for those sites that it is available. Note that enabling this option will slow down the loading of any pages that use share buttons.</p></td>';
 				$htmlShareButtonsForm .= '</tr>';
 				$htmlShareButtonsForm .= '<tr valign="top">';
 					$htmlShareButtonsForm .= '<th scope="row" style="width: 120px;"><label>Show Once:</label></th>';

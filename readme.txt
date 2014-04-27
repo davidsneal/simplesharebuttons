@@ -65,7 +65,11 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 == Changelog ==
 
 = 4.3 =
-* 
+* Improved homepage detection
+* Commas added for share counts in the thousands
+* Images losslessly compressed for improved loadtime
+* Pinterest and font fix for HTTPS
+* Image src attribute moved to the start of all image tags, for improved validation
 
 = 4.2 =
 * Fix for those having trouble, error for centered buttons only

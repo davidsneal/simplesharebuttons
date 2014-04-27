@@ -301,12 +301,12 @@ GNU General Public License for more details.
 			if ($arrSettings['ssba_font_family'] == 'Indie Flower') {
 		
 				// font scripts 
-				wp_register_style('ssbaFont', 'http://fonts.googleapis.com/css?family=Indie+Flower');
+				wp_register_style('ssbaFont', '//fonts.googleapis.com/css?family=Indie+Flower');
 				wp_enqueue_style( 'ssbaFont');
 			} else if ($arrSettings['ssba_font_family'] == 'Reenie Beanie') {
 				
 				// font scripts 
-				wp_register_style('ssbaFont', 'http://fonts.googleapis.com/css?family=Reenie+Beanie');
+				wp_register_style('ssbaFont', '//fonts.googleapis.com/css?family=Reenie+Beanie');
 				wp_enqueue_style( 'ssbaFont');
 			}		
 		//}
@@ -638,7 +638,7 @@ GNU General Public License for more details.
 		$arrSettings = get_ssba_settings();
 
 		// placement on pages/posts/categories/archives/homepage
-		if ( (is_page() && $arrSettings['ssba_pages'] == 'Y') || (is_single() && $arrSettings['ssba_posts'] == 'Y') || (is_category() && $arrSettings['ssba_cats_archs'] == 'Y') || (is_archive() && $arrSettings['ssba_cats_archs'] == 'Y') || (is_home() && $arrSettings['ssba_homepage'] == 'Y') || $booShortCode == TRUE) {
+		if ((!is_home() && !is_front_page() && is_page() && $arrSettings['ssba_pages'] == 'Y') || (is_single() && $arrSettings['ssba_posts'] == 'Y') || (is_category() && $arrSettings['ssba_cats_archs'] == 'Y') || (is_archive() && $arrSettings['ssba_cats_archs'] == 'Y') || ( (is_home() || is_front_page() ) && $arrSettings['ssba_homepage'] == 'Y') || $booShortCode == TRUE) {
 
 					
 			// if not shortcode
@@ -650,7 +650,7 @@ GNU General Public License for more details.
 				$strShareText = $arrSettings['ssba_share_text'];
 						
 			// ssba div
-			$htmlShareButtons = '<!-- I got these buttons from simplesharebuttons.com :) --><div class="ssba">';
+			$htmlShareButtons = '<!-- Simple Share Buttons Adder (4.3) simplesharebuttons.com --><div class="ssba">';
 			
 			// center if set so
 			$htmlShareButtons.= '<div style="text-align:'.$arrSettings['ssba_align'].'">';
@@ -877,20 +877,20 @@ GNU General Public License for more details.
 function ssba_facebook($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShareCount) {
 
 	// facebook share link
-	$htmlShareButtons = '<a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=' . $urlCurrentPage  . '" ' . ($arrSettings['ssba_share_new_window'] == 'Y' ? 'target="_blank"' : NULL) . ($arrSettings['ssba_rel_nofollow'] == 'Y' ? 'rel="nofollow"' : NULL) .'>';
+	$htmlShareButtons = '<a class="ssba_facebook_share" href="http://www.facebook.com/sharer.php?u=' . $urlCurrentPage  . '" ' . ($arrSettings['ssba_share_new_window'] == 'Y' ? 'target="_blank"' : NULL) . ($arrSettings['ssba_rel_nofollow'] == 'Y' ? ' rel="nofollow"' : NULL) .'>';
 	
 	// if not using custom
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show selected ssba image
-		$htmlShareButtons .= '<img title="Facebook" class="ssba" alt="Share on Facebook" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/facebook.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/facebook.png" title="Facebook" class="ssba" alt="Share on Facebook" />';
 	}
 	
 	// if using custom images
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img title="Facebook" class="ssba" src="' . $arrSettings['ssba_custom_facebook'] . '" alt="Share on Facebook" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_facebook'] . '" title="Facebook" class="ssba" alt="Share on Facebook" />';
 	}
 	
 	// close href
@@ -899,7 +899,7 @@ function ssba_facebook($arrSettings, $urlCurrentPage, $strPageTitle, $booShowSha
 	// if show share count is set to Y
 	if ($arrSettings['ssba_show_share_count'] == 'Y' && $booShowShareCount == true) {
 	
-		$htmlShareButtons .= '<span class="ssba_sharecount">' . getFacebookShareCount($urlCurrentPage) . '</span>';
+		$htmlShareButtons .= '<span class="ssba_sharecount">' . number_format(getFacebookShareCount($urlCurrentPage)) . '</span>';
 	}
 	
 	// return share buttons
@@ -929,14 +929,14 @@ function ssba_twitter($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShar
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="Twitter" class="ssba" alt="Tweet about this on Twitter" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/twitter.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/twitter.png" title="Twitter" class="ssba" alt="Tweet about this on Twitter" />';
 	}
 	
 	// if using custom images
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img title="Twitter" class="ssba" src="' . $arrSettings['ssba_custom_twitter'] . '" alt="Tweet about this on Twitter" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_twitter'] . '" title="Twitter" class="ssba" alt="Tweet about this on Twitter" />';
 	}
 	
 	// close href
@@ -945,7 +945,7 @@ function ssba_twitter($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShar
 	// if show share count is set to Y
 	if ($arrSettings['ssba_show_share_count'] == 'Y' && $booShowShareCount == true) {
 	
-		$htmlShareButtons .= '<span class="ssba_sharecount">' . getTwitterShareCount($urlCurrentPage) . '</span>';
+		$htmlShareButtons .= '<span class="ssba_sharecount">' . number_format(getTwitterShareCount($urlCurrentPage)) . '</span>';
 	}
 	
 	// return share buttons
@@ -972,14 +972,14 @@ function ssba_google($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="Google+" class="ssba" alt="Share on Google+" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/google.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/google.png" title="Google+" class="ssba" alt="Share on Google+" />';
 	}
 	
 	// if using custom images
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img title="Share on Google+" class="ssba" src="' . $arrSettings['ssba_custom_google'] . '" alt="Google+" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_google'] . '" title="Share on Google+" class="ssba" alt="Google+" />';
 	}
 	
 	// close href
@@ -988,7 +988,7 @@ function ssba_google($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 	// if show share count is set to Y
 	if ($arrSettings['ssba_show_share_count'] == 'Y' && $booShowShareCount == true) {
 	
-		$htmlShareButtons .= '<span class="ssba_sharecount">' . getGoogleShareCount($urlCurrentPage) . '</span>';
+		$htmlShareButtons .= '<span class="ssba_sharecount">' . number_format(getGoogleShareCount($urlCurrentPage)) . '</span>';
 	}
 	
 	// return share buttons
@@ -1047,14 +1047,14 @@ function ssba_diggit($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="Digg" class="ssba" alt="Digg this" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/diggit.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/diggit.png" title="Digg" class="ssba" alt="Digg this" />';
 	}
 	
 	// if using custom images
 	else {
 		
 		// show custom image
-		$htmlShareButtons .= '<img title="Digg" class="ssba" src="' . $arrSettings['ssba_custom_diggit'] . '" alt="Digg this" />';			
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_diggit'] . '" title="Digg" class="ssba" alt="Digg this" />';			
 	}
 	
 	// close href
@@ -1074,14 +1074,14 @@ function ssba_reddit($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="Reddit" class="ssba" alt="Share on Reddit" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/reddit.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/reddit.png" title="Reddit" class="ssba" alt="Share on Reddit" />';
 	}
 	
 	// if using custom images
 	else {
 		
 		// show custom image
-		$htmlShareButtons .= '<img title="Reddit" class="ssba" src="' . $arrSettings['ssba_custom_reddit'] . '" alt="Share on Reddit" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_reddit'] . '" title="Reddit" class="ssba" alt="Share on Reddit" />';
 	}
 	
 	// close href
@@ -1091,7 +1091,7 @@ function ssba_reddit($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 	if ($arrSettings['ssba_show_share_count'] == 'Y' && $booShowShareCount == true) {
 	
 		// get and display share count
-		$htmlShareButtons .= '<span class="ssba_sharecount">' . getRedditShareCount($urlCurrentPage) . '</span>';
+		$htmlShareButtons .= '<span class="ssba_sharecount">' . number_format(getRedditShareCount($urlCurrentPage)) . '</span>';
 	}
 	
 	// return share buttons
@@ -1118,14 +1118,14 @@ function ssba_linkedin($arrSettings, $urlCurrentPage, $strPageTitle, $booShowSha
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="Linkedin" class="ssba" alt="Share on LinkedIn" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/linkedin.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/linkedin.png" title="Linkedin" class="ssba" alt="Share on LinkedIn" />';
 	}
 	
 	// if using custom images
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img title="LinkedIn" class="ssba" src="' . $arrSettings['ssba_custom_linkedin'] . '" alt="Share on LinkedIn" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_linkedin'] . '" alt="Share on LinkedIn" title="LinkedIn" class="ssba" />';
 	}
 	
 	// close href
@@ -1135,7 +1135,7 @@ function ssba_linkedin($arrSettings, $urlCurrentPage, $strPageTitle, $booShowSha
 	if ($arrSettings['ssba_show_share_count'] == 'Y' && $booShowShareCount == true) {
 	
 		// get and display share count
-		$htmlShareButtons .= '<span class="ssba_sharecount">' . getLinkedinShareCount($urlCurrentPage) . '</span>';
+		$htmlShareButtons .= '<span class="ssba_sharecount">' . number_format(getLinkedinShareCount($urlCurrentPage)) . '</span>';
 	}
 	
 	// return share buttons
@@ -1158,13 +1158,13 @@ function getLinkedinShareCount($urlCurrentPage) {
 function ssba_pinterest($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShareCount) {
 
 	// pinterest share link
-	$htmlShareButtons = "<a class='ssba_pinterest_share' href='javascript:void((function()%7Bvar%20e=document.createElement(&apos;script&apos;);e.setAttribute(&apos;type&apos;,&apos;text/javascript&apos;);e.setAttribute(&apos;charset&apos;,&apos;UTF-8&apos;);e.setAttribute(&apos;src&apos;,&apos;http://assets.pinterest.com/js/pinmarklet.js?r=&apos;+Math.random()*99999999);document.body.appendChild(e)%7D)());'>";
+	$htmlShareButtons = "<a class='ssba_pinterest_share' href='javascript:void((function()%7Bvar%20e=document.createElement(&apos;script&apos;);e.setAttribute(&apos;type&apos;,&apos;text/javascript&apos;);e.setAttribute(&apos;charset&apos;,&apos;UTF-8&apos;);e.setAttribute(&apos;src&apos;,&apos;//assets.pinterest.com/js/pinmarklet.js?r=&apos;+Math.random()*99999999);document.body.appendChild(e)%7D)());'>";
 	
 	// if image set is not custom
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="Pinterest" class="ssba" alt="Pin on Pinterest" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/pinterest.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/pinterest.png" title="Pinterest" class="ssba" alt="Pin on Pinterest" />';
 	}
 	
 	// if using custom images
@@ -1180,7 +1180,7 @@ function ssba_pinterest($arrSettings, $urlCurrentPage, $strPageTitle, $booShowSh
 	// if show share count is set to Y
 	if ($arrSettings['ssba_show_share_count'] == 'Y' && $booShowShareCount == true) {
 	
-		$htmlShareButtons .= '<span class="ssba_sharecount">' . getPinterestShareCount($urlCurrentPage) . '</span>';
+		$htmlShareButtons .= '<span class="ssba_sharecount">' . number_format(getPinterestShareCount($urlCurrentPage)) . '</span>';
 	}
 	
 	// return share buttons
@@ -1209,14 +1209,14 @@ function ssba_stumbleupon($arrSettings, $urlCurrentPage, $strPageTitle, $booShow
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="StumbleUpon" class="ssba" alt="Share on StumbleUpon" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/stumbleupon.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/stumbleupon.png"title="StumbleUpon" class="ssba" alt="Share on StumbleUpon" />';
 	}
 	
 	// if using custom images
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img title="StumbleUpon" class="ssba" src="' . $arrSettings['ssba_custom_stumbleupon'] . '" alt="Share on StumbleUpon" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_stumbleupon'] . '" alt="Share on StumbleUpon" title="StumbleUpon" class="ssba" />';
 	}
 	
 	// close href
@@ -1225,7 +1225,7 @@ function ssba_stumbleupon($arrSettings, $urlCurrentPage, $strPageTitle, $booShow
 	// if show share count is set to Y
 	if ($arrSettings['ssba_show_share_count'] == 'Y' && $booShowShareCount == true) {
 	
-		$htmlShareButtons .= '<span class="ssba_sharecount">' . getStumbleUponShareCount($urlCurrentPage) . '</span>';
+		$htmlShareButtons .= '<span class="ssba_sharecount">' . number_format(getStumbleUponShareCount($urlCurrentPage)) . '</span>';
 	}
 	
 	// return share buttons
@@ -1252,14 +1252,14 @@ function ssba_email($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShareC
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="Email" class="ssba" alt="Email this to someone" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/email.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/email.png" title="Email" class="ssba" alt="Email this to someone" />';
 	}
 	
 	// if using custom images
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img title="Email" class="ssba" src="' . $arrSettings['ssba_custom_email'] . '" alt="Email to someone" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_email'] . '" title="Email" class="ssba" alt="Email to someone" />';
 	}
 	
 	// close href
@@ -1286,14 +1286,14 @@ function ssba_flattr($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="Flattr" class="ssba" alt="Flattr the author" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/flattr.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/flattr.png" title="Flattr" class="ssba" alt="Flattr the author" />';
 	}
 	
 	// if using custom images
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img title="Flattr" class="ssba" src="' . $arrSettings['ssba_custom_flattr'] . '" alt="Flattr the author" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_flattr'] . '" title="Flattr" class="ssba" alt="Flattr the author" />';
 	}
 	
 	// close href
@@ -1313,14 +1313,14 @@ function ssba_buffer($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="Buffer" class="ssba" alt="Buffer this page" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/buffer.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/buffer.png" title="Buffer" class="ssba" alt="Buffer this page" />';
 	}
 	
 	// if using custom images
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img title="Buffer" class="ssba" src="' . $arrSettings['ssba_custom_buffer'] . '" alt="Buffer this page" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_buffer'] . '" title="Buffer" class="ssba" alt="Buffer this page" />';
 	}
 	
 	// close href
@@ -1354,14 +1354,14 @@ function ssba_tumblr($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="tumblr" class="ssba" alt="Share on Tumblr" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/tumblr.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/tumblr.png" title="tumblr" class="ssba" alt="Share on Tumblr" />';
 	}
 	
 	// if using custom images
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img title="tumblr" class="ssba" src="' . $arrSettings['ssba_custom_tumblr'] . '" alt="share on Tumblr" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_print'] . '" title="tumblr" class="ssba" alt="share on Tumblr" />';
 	}
 	
 	// close href
@@ -1381,14 +1381,14 @@ function ssba_print($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShareC
 	if ($arrSettings['ssba_image_set'] != 'custom') {
 	
 		// show ssba image
-		$htmlShareButtons .= '<img title="Print" class="ssba" alt="Print this page" src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/print.png" />';
+		$htmlShareButtons .= '<img src="' . WP_PLUGIN_URL . '/simple-share-buttons-adder/buttons/' . $arrSettings['ssba_image_set'] . '/print.png" title="Print" class="ssba" alt="Print this page" />';
 	}
 	
 	// if using custom images
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img title="Print" class="ssba" src="' . $arrSettings['ssba_custom_print'] . '" alt="Print this page" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_print'] . '" title="Print" class="ssba" alt="Print this page" />';
 	}
 	
 	// close href

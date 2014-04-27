@@ -9,6 +9,9 @@ min-height: 60px;
 float: left;
 margin-right: 50px;
 }
+.ssba-logo-img {
+	width:310px;
+}
 
 #ssba-top-nav {
 margin-top: 12px;
