@@ -54,7 +54,7 @@ GNU General Public License for more details.
 		add_option('ssba_flattr_user_id', 		'');
 		add_option('ssba_flattr_url', 			'');
 		add_option('ssba_share_new_window', 	'Y');
-		add_option('ssba_link_to_ssb', 			'Y');
+		add_option('ssba_link_to_ssb', 			'N');
 		add_option('ssba_show_share_count',		'');
 		add_option('ssba_share_count_style',	'default');
 		add_option('ssba_share_count_css',		'');
