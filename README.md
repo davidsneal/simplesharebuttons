@@ -43,9 +43,11 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 <h2>Changelog</h2>
 
 <h3>4.3</h3>
+* Improved homepage detection
 * Commas added for share counts in the thousands
 * Images losslessly compressed for improved loadtime
 * Pinterest and font fix for HTTPS
+* Image src attribute moved to the start of all image tags, for improved validation
 
 <h3>4.2</h3>
 * Fix for those having trouble, error for centered buttons only
