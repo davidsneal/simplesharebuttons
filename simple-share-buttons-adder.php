@@ -1361,7 +1361,7 @@ function ssba_tumblr($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_print'] . '" title="tumblr" class="ssba" alt="share on Tumblr" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_tumblr'] . '" title="tumblr" class="ssba" alt="share on Tumblr" />';
 	}
 	
 	// close href
