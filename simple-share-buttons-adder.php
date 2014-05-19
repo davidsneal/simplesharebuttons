@@ -662,14 +662,14 @@ GNU General Public License for more details.
 				if ($arrSettings['ssba_link_to_ssb'] == 'Y') {
 				
 					// share text with link
-					$htmlShareButtons .= '<a href="http://www.simplesharebuttons.com" target="_blank">' . $strShareText . '</a>';
+					$htmlShareButtons .= '<span class="ssba_share_text"><a href="http://www.simplesharebuttons.com" target="_blank">' . $strShareText . '</a></span>';
 				}
 				
 				// just display the share text
 				else { 
 					
 					// share text
-					$htmlShareButtons .= $strShareText;
+					$htmlShareButtons .= '<span class="ssba_share_text">' . $strShareText . '</span>';
 				}
 				// add a line break if set to above
 				($arrSettings['ssba_text_placement'] == 'above' ? $htmlShareButtons .= '<br/>' : NULL);
@@ -711,20 +711,22 @@ GNU General Public License for more details.
 				if ($arrSettings['ssba_link_to_ssb'] == 'Y') {
 				
 					// share text with link
-					$htmlShareButtons .= '<a href="http://www.simplesharebuttons.com" target="_blank">' . $strShareText . '</a>';
+					$htmlShareButtons .= '<span class="ssba_share_text"><a href="http://www.simplesharebuttons.com" target="_blank">' . $strShareText . '</a></span>';
 				}
 				
 				// just display the share text
 				else { 
 					
 					// share text
-					$htmlShareButtons .= $strShareText;
+					$htmlShareButtons .= '<span class="ssba_share_text">' . $strShareText . '</span>';
 				}
 			}
 			
 			// close center if set
 			$htmlShareButtons.= '</div>';
 			$htmlShareButtons.= '</div>';
+			
+			$htmlShareButtons = apply_filters('ssba_html_output', $htmlShareButtons, $booShortCode);
 			
 			// if not using shortcode
 			if ($booShortCode == FALSE) {
@@ -1041,7 +1043,7 @@ function getGoogleShareCount($urlCurrentPage) {
 function ssba_diggit($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShareCount) {
 
 	// diggit share link
-	$htmlShareButtons = '<a class="ssba_diggit_share ssba_share_link" href="http://www.digg.com/submit?url=' . $urlCurrentPage  . '" ' . ($arrSettings['ssba_share_new_window'] == 'Y' ? 'target="_blank"' : NULL) . ($arrSettings['ssba_rel_nofollow'] == 'Y' ? 'rel="nofollow"' : NULL) . '>';
+	$htmlShareButtons = '<a class="ssba_diggit_share" class="ssba_share_link" href="http://www.digg.com/submit?url=' . $urlCurrentPage  . '" ' . ($arrSettings['ssba_share_new_window'] == 'Y' ? 'target="_blank"' : NULL) . ($arrSettings['ssba_rel_nofollow'] == 'Y' ? 'rel="nofollow"' : NULL) . '>';
 	
 	// if image set is not custom
 	if ($arrSettings['ssba_image_set'] != 'custom') {
@@ -1112,7 +1114,7 @@ function getRedditShareCount($urlCurrentPage) {
 function ssba_linkedin($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShareCount) {
 
 	// linkedin share link
-	$htmlShareButtons = '<a class="ssba_linkedin_share ssba_share_link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=' . $urlCurrentPage  . '" ' . ($arrSettings['ssba_share_new_window'] == 'Y' ? 'target="_blank"' : NULL) . ($arrSettings['ssba_rel_nofollow'] == 'Y' ? 'rel="nofollow"' : NULL) . '>';
+	$htmlShareButtons = '<a class="ssba_linkedin_share" class="ssba_share_link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=' . $urlCurrentPage  . '" ' . ($arrSettings['ssba_share_new_window'] == 'Y' ? 'target="_blank"' : NULL) . ($arrSettings['ssba_rel_nofollow'] == 'Y' ? 'rel="nofollow"' : NULL) . '>';
 	
 	// if image set is not custom
 	if ($arrSettings['ssba_image_set'] != 'custom') {
@@ -1203,7 +1205,7 @@ function getPinterestShareCount($urlCurrentPage) {
 function ssba_stumbleupon($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShareCount) {
 
 	// stumbleupon share link
-	$htmlShareButtons = '<a class="ssba_stumbleupon_share ssba_share_link" href="http://www.stumbleupon.com/submit?url=' . $urlCurrentPage  . '&amp;title=' . $strPageTitle . '" ' . ($arrSettings['ssba_share_new_window'] == 'Y' ? 'target="_blank"' : NULL) . ($arrSettings['ssba_rel_nofollow'] == 'Y' ? 'rel="nofollow"' : NULL) . '>';
+	$htmlShareButtons = '<a class="ssba_stumbleupon_share" class="ssba_share_link" href="http://www.stumbleupon.com/submit?url=' . $urlCurrentPage  . '&amp;title=' . $strPageTitle . '" ' . ($arrSettings['ssba_share_new_window'] == 'Y' ? 'target="_blank"' : NULL) . ($arrSettings['ssba_rel_nofollow'] == 'Y' ? 'rel="nofollow"' : NULL) . '>';
 	
 	// if image set is not custom
 	if ($arrSettings['ssba_image_set'] != 'custom') {
@@ -1361,7 +1363,7 @@ function ssba_tumblr($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 	else {
 	
 		// show custom image
-		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_tumblr'] . '" title="tumblr" class="ssba" alt="share on Tumblr" />';
+		$htmlShareButtons .= '<img src="' . $arrSettings['ssba_custom_print'] . '" title="tumblr" class="ssba" alt="share on Tumblr" />';
 	}
 	
 	// close href
@@ -1375,7 +1377,7 @@ function ssba_tumblr($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 function ssba_print($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShareCount) {
 
 	// linkedin share link
-	$htmlShareButtons = '<a class="ssba_print ssba_share_link" href="#" onclick="window.print()">';
+	$htmlShareButtons = '<a class="ssba_print" class="ssba_share_link" href="#" onclick="window.print()">';
 	
 	// if image set is not custom
 	if ($arrSettings['ssba_image_set'] != 'custom') {
