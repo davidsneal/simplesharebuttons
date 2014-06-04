@@ -568,8 +568,9 @@ CODE;
 									<table class="centerme">
 										<tr>
 											<td>
-												<a href="http://www.simplesharebuttons.com/plus"><h3>Check out Simple Share Buttons Plus!</h3>
-												<img width="200" height="200" src="' . plugins_url() . '/simple-share-buttons-adder/images/sharebuttonsplus.png"></a>
+												<a href="http://www.simplesharebuttons.com/plus"><h3>Check out Simple Share Buttons Plus!</h3></a>
+												<h3><a href="#TB_inline?width=600&height=450&inlineId=ssbp-info" class="thickbox">What\'s different?</a></h3>
+												<a href="http://www.simplesharebuttons.com/plus"><img width="200" height="200" src="' . plugins_url() . '/simple-share-buttons-adder/images/sharebuttonsplus.png"></a>
 											</td>
 										</tr>
 										<tr>
@@ -592,6 +593,17 @@ CODE;
 										<div class="et-box-content">
 										<p><strong>Visit <a href="http://make.simplesharebuttons.com" target="blank">make.simplesharebuttons.com</a><br/>to make custom-colour buttons</strong></p>
 									</div></div>
+								</div>
+								<div id="ssbp-info" style="display:none;">
+									<div class="ssbp-info centerme">
+										<h1 class="blueme">Simple Share Buttons Plus</h1>
+										 <p class="description">Find out more at <a class="blueme" href="http://www.simplesharebuttons.com/plus">www.simplesharebuttons.com/plus</a></p>
+									     <p class="ssbp-popup">Popup share windows</p>
+									     <p class="ssbp-retina">Retina-ready CSS Sprite</p>
+									     <p class="ssbp-tracking">Built-in tracking</p>
+									     <p class="ssbp-hover">Hover and click effects</p>
+									     <p class="ssbp-vk">VK button added</p>
+									</div>
 								</div>';
 
 	// close author cell and close table
