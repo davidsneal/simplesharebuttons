@@ -49,6 +49,8 @@ background-color: #f0f0f0 !important;
 border-bottom: 1px solid #f0f0f0;
 }
 
+.author-image img {border-radius: 50%;margin-top: 15px;}
+
 .ssba-include-list {
 background: #f1f1f1;
 width: 150px; 
@@ -91,19 +93,15 @@ background-image: linear-gradient(to top,#ececec,#f9f9f9);border: 1px solid #c0b
 -moz-border-radius: 10px; -webkit-border-radius: 10px; -khtml-border-radius: 10px;  border-radius: 10px; -o-border-radius: 10px;
 width:345px;
 padding:20px;
-background: #f1f1f1;
+background: #fff;
 margin: 10px 0px 10px;
 font-size: 14px;
 border: 1px solid #dfdfdf;
 }
 
-.ssba-shadow .ssba-box-content {
-color: #737373;
-background: #f1f1f1;
-}
-
 .centerme {
 text-align: center;
+width:100%;
 }
 
 .centerme a { text-decoration: none; font-weight: bold; }

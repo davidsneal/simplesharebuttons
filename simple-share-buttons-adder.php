@@ -3,12 +3,12 @@
 Plugin Name: Simple Share Buttons Adder
 Plugin URI: http://www.simplesharebuttons.com
 Description: A simple plugin that enables you to add share buttons to all of your posts and/or pages.
-Version: 4.3
+Version: 4.4
 Author: David S. Neal
 Author URI: http://www.davidsneal.co.uk/
 License: GPLv2
 
-Copyright 2013 Simple Share Buttons admin@simplesharebuttons.com
+Copyright 2014 Simple Share Buttons admin@simplesharebuttons.com
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as 
@@ -37,7 +37,7 @@ GNU General Public License for more details.
 	function ssba_activate() {
 	
 		// insert default options for ssba
-		add_option('ssba_version', 				'4.3');
+		add_option('ssba_version', 				'4.4');
 		add_option('ssba_image_set', 			'somacro');
 		add_option('ssba_size', 				'35');
 		add_option('ssba_pages',				'');
@@ -325,8 +325,8 @@ GNU General Public License for more details.
 		// query the db for current ssba settings
 		$arrSettings = get_ssba_settings();
 
-		// check if not yet updated to 4.3
-		if ($arrSettings['ssba_version'] != '4.3') {
+		// check if not yet updated to 4.4
+		if ($arrSettings['ssba_version'] != '4.4') {
 		
 			// run the upgrade function
 			upgrade_ssba($arrSettings);		
@@ -352,7 +352,7 @@ GNU General Public License for more details.
 		add_option('ssba_rel_nofollow',	'');
 	
 		// update version number
-		update_option('ssba_version', '4.3');
+		update_option('ssba_version', '4.4');
 	}
 
 	// --------- SETTINGS PAGE ------------ //
@@ -650,7 +650,7 @@ GNU General Public License for more details.
 				$strShareText = $arrSettings['ssba_share_text'];
 						
 			// ssba div
-			$htmlShareButtons = '<!-- Simple Share Buttons Adder (4.3) simplesharebuttons.com --><div class="ssba">';
+			$htmlShareButtons = '<!-- Simple Share Buttons Adder (4.4) simplesharebuttons.com --><div class="ssba">';
 			
 			// center if set so
 			$htmlShareButtons.= '<div style="text-align:'.$arrSettings['ssba_align'].'">';

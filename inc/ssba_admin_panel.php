@@ -552,7 +552,7 @@ CODE;
 	
 	// author div
 	$htmlShareButtonsForm .= '	<div class="ssba-box ssba-shadow">
-									<div class="ssba-box-content">Quite a fair amount of time and effort has gone into Simple Share Buttons, any donations would be greatly appreciated, it will help me continue to be able to offer this for free!<p></p>
+									<div class="ssba-box-content">
 										<div class="author-shortcodes">
 											<div class="author-inner">
 												<div class="author-image">
@@ -560,38 +560,38 @@ CODE;
 													<div class="author-overlay"></div>
 												</div> <!-- .author-image --> 
 												<div class="author-info">
-													<a href="http://www.davidsneal.co.uk" target="_blank">David Neal</a> – Married, father of one, with an (sometimes unhealthy) obsession with websites, coding and gaming. This plugin and its website has been funded by myself.
+													<a href="http://www.davidsneal.co.uk" target="_blank">David Neal</a> – Married, father of one (another on the way!), with an obsession with websites, coding and gaming. This plugin and its website has been funded by myself.
 												</div> <!-- .author-info -->
 											</div> <!-- .author-inner -->
 										</div> <!-- .author-shortcodes -->
 									</div></br>
-									<center><table>
+									<table class="centerme">
 										<tr>
-											<td><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-													<input type="hidden" name="cmd" value="_s-xclick">
-													<input type="hidden" name="hosted_button_id" value="4TLXT69XCP3B8">
-													<input type="image" src="' . plugins_url() . '/simple-share-buttons-adder/images/paypal.png" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
-													<img alt="" border="0" src="' . plugins_url() . '/simple-share-buttons-adder/images/paypal.png" width="1" height="1">
-												</form>
-											<td><a href="http://flattr.com/thing/1328301/Simple-Share-Buttons" target="_blank"><img class="ssba-flattr-this" src="' . plugins_url() . '/simple-share-buttons-adder/images/flattr.png" alt="Flattr this" title="Flattr this" border="0" /></a>
-											<td><a href="https://www.freelancer.co.uk/u/davidsneal.html" target="_blank"><img src="' . plugins_url() . '/simple-share-buttons-adder/images/freelancer.png" title="Hire me on Freelancer!" /></a>
+											<td>
+												<a href="http://www.simplesharebuttons.com/plus"><h3>Check out Simple Share Buttons Plus!</h3>
+												<img width="200" height="200" src="' . plugins_url() . '/simple-share-buttons-adder/images/sharebuttonsplus.png"></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="centerme"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="75WFUCTYND76Q">
+<input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+											</td>
 										</tr>
 									</table>
-									<p>You can show your support for <strong>free</strong> too&#33;</p>
 									<table class="centerme">
 										<tr>
 											<td><a href="http://wordpress.org/support/view/plugin-reviews/simple-share-buttons-adder" target="_blank" title="Rate 5 Star">Rate the plugin<br/><img src="' . plugins_url() . '/simple-share-buttons-adder/images/stars.png"></a></br></td>
-										<tr>
-											<td><a href="http://twitter.com/share?url=http://www.simplesharebuttons.com&text=Simple Share Buttons" target="_blank" title="Tweet">Tweet about Simple Share Buttons<br/><img src="' . plugins_url() . '/simple-share-buttons-adder/images/tweet.png"></a></td>
-										<tr>
-											<td><a href="http://www.facebook.com/sharer.php?u=http://www.simplesharebuttons.com" target="_blank" title="Share on Facebook">Share on Facebook<br/><img src="' . plugins_url() . '/simple-share-buttons-adder/images/share.png"></a></td>
 										</tr>
 									</table>
-									<div class="et-box et-bio">
+									<div class="et-box et-bio centerme">
 										<div class="et-box-content">
-										<h2>Make your own custom&#45;coloured buttons for free!</h2>
-										<h3>Visit <a href="http://make.simplesharebuttons.com" target="blank">make.simplesharebuttons.com</a></h3>
-									</center></div></div>
+										<p><strong>Visit <a href="http://make.simplesharebuttons.com" target="blank">make.simplesharebuttons.com</a><br/>to make custom-colour buttons</strong></p>
+									</div></div>
 								</div>';
 
 	// close author cell and close table
