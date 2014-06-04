@@ -42,6 +42,9 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 
 <h2>Changelog</h2>
 
+<h3>4.4</h3>
+* Tidy up author info and add link to Simple Share Buttons Plus
+
 <h3>4.3</h3>
 * Improved homepage detection
 * Commas added for share counts in the thousands

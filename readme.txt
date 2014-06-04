@@ -64,6 +64,10 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 
 == Changelog ==
 
+= 4.4 =
+
+* Tidy up author info and add link to Simple Share Buttons Plus
+
 = 4.3 =
 * Improved homepage detection
 * Commas added for share counts in the thousands
