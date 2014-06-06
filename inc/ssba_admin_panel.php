@@ -570,7 +570,7 @@ CODE;
 											<td>
 												<a href="http://www.simplesharebuttons.com/plus"><h3>Check out Simple Share Buttons Plus!</h3></a>
 												<h3><a href="#TB_inline?width=600&height=450&inlineId=ssbp-info" class="thickbox">What\'s different?</a></h3>
-												<a href="http://www.simplesharebuttons.com/plus"><img width="200" height="200" src="' . plugins_url() . '/simple-share-buttons-adder/images/sharebuttonsplus.png"></a>
+												<iframe width="330" height="186" src="//www.youtube.com/embed/SFO9Uss-LuQ?rel=0" frameborder="0" allowfullscreen></iframe>
 											</td>
 										</tr>
 										<tr>
