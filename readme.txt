@@ -67,6 +67,10 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 = 4.4 =
 
 * Tidy up author info and add link to Simple Share Buttons Plus
+* Tidy up author info and add link to Simple Share Buttons Plus
+* New option in settings to only show buttons with excerpts if wanted
+* Port number not added if present
+* Page title pulled more accurately and efficiently, most noticed by those using twitter and/or with shortcode
 
 = 4.3 =
 * Improved homepage detection

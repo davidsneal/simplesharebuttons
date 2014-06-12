@@ -24,6 +24,10 @@ GNU General Public License for more details.
 		// turn error reporting off
 		error_reporting(0);
 	}
+	
+	// make sure we have settings ready
+	// this has been introduced to exclude from excerpts
+	$arrSettings = get_ssba_settings();
 
 	// --------- INSTALLATION ------------ //
 
@@ -44,6 +48,7 @@ GNU General Public License for more details.
 		add_option('ssba_posts',				'');
 		add_option('ssba_cats_archs',			'');
 		add_option('ssba_homepage',				'');
+		add_option('ssba_excerpts',				'');
 		add_option('ssba_align', 				'left');
 		add_option('ssba_padding', 				'6');
 		add_option('ssba_before_or_after', 		'after');
@@ -112,6 +117,7 @@ GNU General Public License for more details.
 		delete_option('ssba_posts');
 		delete_option('ssba_cats_archs');
 		delete_option('ssba_homepage');
+		delete_option('ssba_excerpts');
 		delete_option('ssba_align');
 		delete_option('ssba_padding');
 		delete_option('ssba_before_or_after');
@@ -248,8 +254,7 @@ GNU General Public License for more details.
 	}
 	
 	// add ssba to available widgets
-	add_action( 'widgets_init', create_function( '', 'register_widget( "ssba_widget" );' ) );
-	
+	add_action( 'widgets_init', create_function( '', 'register_widget( "ssba_widget" );' ) );	
 	
 	function mywidget_init() {
 		
@@ -380,6 +385,7 @@ GNU General Public License for more details.
 			update_option('ssba_posts', 				(isset($_POST['ssba_posts']) ? $_POST['ssba_posts'] : NULL));
 			update_option('ssba_cats_archs', 			(isset($_POST['ssba_cats_archs']) ? $_POST['ssba_cats_archs'] : NULL));
 			update_option('ssba_homepage', 				(isset($_POST['ssba_homepage']) ? $_POST['ssba_homepage'] : NULL));
+			update_option('ssba_excerpts', 				(isset($_POST['ssba_excerpts']) ? $_POST['ssba_excerpts'] : NULL));
 			update_option('ssba_align', 				(isset($_POST['ssba_align']) ? $_POST['ssba_align'] : NULL));
 			update_option('ssba_padding', 				$_POST['ssba_padding']);								
 			update_option('ssba_before_or_after', 		$_POST['ssba_before_or_after']);
@@ -679,24 +685,15 @@ GNU General Public License for more details.
 			if ($booShortCode == FALSE) {
 			
 				// use wordpress functions for page/post details
-				$urlCurrentPage = get_permalink($post->ID);	
+				$urlCurrentPage = get_permalink($post->ID);
 				$strPageTitle = get_the_title($post->ID);
-			}	else if ($booShortCode == TRUE) { // if using shortcode
-			
-				// if custom attributes have been set
-				if (isset($atts['url']) && $atts['url'] != '') {
-					
-					// set page URL and title as set by user
+				
+			} else { // using shortcode
+
+					// set page URL and title as set by user or get if needed
 					$urlCurrentPage = (isset($atts['url']) ? $atts['url'] : ssba_current_url());
-					$strPageTitle = (isset($atts['title']) ? $atts['title'] : NULL);
-				} else {
-					// get page name and url from functions
-					$urlCurrentPage = ssba_current_url();
-					$strPageTitle = $_SERVER["SERVER_NAME"];
-				}
-				
-				
-			}		
+					$strPageTitle = (isset($atts['title']) ? $atts['title'] : get_the_title());
+			}	
 			
 			// the buttons!
 			$htmlShareButtons.= get_share_buttons($arrSettings, $urlCurrentPage, $strPageTitle);
@@ -758,9 +755,15 @@ GNU General Public License for more details.
 		return $htmlContent;
 	}
 
-	// add share buttons to content and/or excerpts
+	// add share buttons to content	
 	add_filter( 'the_content', 'show_share_buttons');	
-	add_filter( 'the_excerpt', 'show_share_buttons');
+	
+	// if we wish to add to excerpts
+	if($arrSettings['ssba_excerpts'] == 'Y') {
+		
+		// add a hook
+		add_filter( 'the_excerpt', 'show_share_buttons');
+	}
 
 	// shortcode for adding buttons
 	function ssba_buttons($atts) {
@@ -774,7 +777,7 @@ GNU General Public License for more details.
 	
 	// shortcode for hiding buttons
 	function ssba_hide($content) {
-
+		// no need to do anything here!
 	}
 	
 	// get URL function
@@ -787,23 +790,9 @@ GNU General Public License for more details.
 		if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {$urlCurrentPage .= "s";}
 		
 		// add colon and forward slashes
-		$urlCurrentPage .= "://";
-		
-		// check if port is not 80
-		if ($_SERVER["SERVER_PORT"] != "80") {
-		
-			// include port if needed
-			$urlCurrentPage .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-			
-		} 
-		
-		// else if on port 80
-		else {
-		
-			// don't include port in url
-			$urlCurrentPage .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-		}
-		
+		$urlCurrentPage .= "://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+
+		// return url
 		return $urlCurrentPage;
 	}
 	
