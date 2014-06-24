@@ -898,10 +898,17 @@ function ssba_facebook($arrSettings, $urlCurrentPage, $strPageTitle, $booShowSha
 // get facebook share count
 function getFacebookShareCount($urlCurrentPage) {
 
-	// get results from facebook and return the number of shares
-    $htmlFacebookShareDetails = file_get_contents('http://graph.facebook.com/' . $urlCurrentPage);
-    $arrFacebookShareDetails = json_decode($htmlFacebookShareDetails, true);
-    $intFacebookShareCount =  (isset($arrFacebookShareDetails['shares']) ? $arrFacebookShareDetails['shares'] : 0);
+    $key = 'ssba-fbc-'.md5($urlCurrentPage);
+
+    $intFacebookShareCount = get_transient($key);
+    if ($intFacebookShareCount === false) {
+
+        // get results from facebook and return the number of shares
+        $htmlFacebookShareDetails = file_get_contents('http://graph.facebook.com/' . $urlCurrentPage);
+        $arrFacebookShareDetails = json_decode($htmlFacebookShareDetails, true);
+        $intFacebookShareCount =  (isset($arrFacebookShareDetails['shares']) ? $arrFacebookShareDetails['shares'] : 0);
+        set_transient($key, $intFacebookShareCount, 600);
+    }
     return ($intFacebookShareCount ) ? $intFacebookShareCount : '0';
 }
 
@@ -944,10 +951,17 @@ function ssba_twitter($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShar
 // get twitter share count
 function getTwitterShareCount($urlCurrentPage) {
 
-	// get results from twitter and return the number of shares
-    $htmlTwitterShareDetails = file_get_contents('http://urls.api.twitter.com/1/urls/count.json?url=' . $urlCurrentPage);
-    $arrTwitterShareDetails = json_decode($htmlTwitterShareDetails, true);
-    $intTwitterShareCount =  $arrTwitterShareDetails['count'];
+    $key = 'ssba-tc-'.md5($urlCurrentPage);
+    $intTwitterShareCount = get_transient($key);
+    if ($intTwitterShareCount === false) {
+
+        // get results from twitter and return the number of shares
+        $htmlTwitterShareDetails = file_get_contents('http://urls.api.twitter.com/1/urls/count.json?url=' . $urlCurrentPage);
+        $arrTwitterShareDetails = json_decode($htmlTwitterShareDetails, true);
+        $intTwitterShareCount =  $arrTwitterShareDetails['count'];
+
+        set_transient($key, $intTwitterShareCount, 600);
+    }
     return ($intTwitterShareCount ) ? $intTwitterShareCount : '0';
 }
 
@@ -987,7 +1001,11 @@ function ssba_google($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 // get google share count
 function getGoogleShareCount($urlCurrentPage) {
 
-	 $args = array(
+     $key = 'ssba-gc-'.md5($urlCurrentPage);
+     $intGoogleShareCount = get_transient($key);
+     if ($intGoogleShareCount === false) {
+
+         $args = array(
             'method' => 'POST',
             'headers' => array(
                 // setup content type to JSON 
@@ -1013,17 +1031,20 @@ function getGoogleShareCount($urlCurrentPage) {
             'sslverify'=>false
         );
      
-    // retrieves JSON with HTTP POST method for current URL  
-    $json_string = wp_remote_post("https://clients6.google.com/rpc", $args);
-     
-    if (is_wp_error($json_string)){
-        // return zero if response is error                             
-        return "0";             
-    } else {        
-        $json = json_decode($json_string['body'], true);                    
-        // return count of Google +1 for requsted URL
-        return intval( $json['result']['metadata']['globalCounts']['count'] ); 
-    }
+        // retrieves JSON with HTTP POST method for current URL  
+        $json_string = wp_remote_post("https://clients6.google.com/rpc", $args);
+         
+        if (is_wp_error($json_string)){
+            // return zero if response is error                             
+            $intGoogleShareCount = "0";             
+        } else {        
+            $json = json_decode($json_string['body'], true);                    
+            // return count of Google +1 for requsted URL
+            $intGoogleShareCount =  intval( $json['result']['metadata']['globalCounts']['count'] ); 
+        }
+     }
+
+     return $intGoogleShareCount;
 }
 
 // get diggit button
@@ -1090,10 +1111,16 @@ function ssba_reddit($arrSettings, $urlCurrentPage, $strPageTitle, $booShowShare
 // get reddit share count
 function getRedditShareCount($urlCurrentPage) {
 
-	// get results from reddit and return the number of shares
-    $htmlRedditShareDetails = file_get_contents('http://www.reddit.com/api/info.json?url=' . $urlCurrentPage);
-	$arrRedditResult = json_decode($htmlRedditShareDetails, true);
-    $intRedditShareCount = (isset($arrRedditResult['data']['children']['0']['data']['score']) ? $arrRedditResult['data']['children']['0']['data']['score'] : 0);
+    $key = 'ssba-rc-'.md5($urlCurrentPage);
+    $intRedditShareCount = get_transient($key);
+    if ($intRedditShareCount === false) {
+
+        // get results from reddit and return the number of shares
+        $htmlRedditShareDetails = file_get_contents('http://www.reddit.com/api/info.json?url=' . $urlCurrentPage);
+        $arrRedditResult = json_decode($htmlRedditShareDetails, true);
+        $intRedditShareCount = (isset($arrRedditResult['data']['children']['0']['data']['score']) ? $arrRedditResult['data']['children']['0']['data']['score'] : 0);
+        set_transient($key, $intRedditShareCount, 600);
+    }
     return ($intRedditShareCount ) ? $intRedditShareCount : '0';
 }
 
@@ -1134,12 +1161,18 @@ function ssba_linkedin($arrSettings, $urlCurrentPage, $strPageTitle, $booShowSha
 // get linkedin share count
 function getLinkedinShareCount($urlCurrentPage) {
 
-	// get results from linkedin and return the number of shares
-    $htmlLinkedinShareDetails = file_get_contents('http://www.linkedin.com/countserv/count/share?url=' . $urlCurrentPage);
-	$htmlLinkedinShareDetails = str_replace('IN.Tags.Share.handleCount(', '', $htmlLinkedinShareDetails);
-    $htmlLinkedinShareDetails = str_replace(');', '', $htmlLinkedinShareDetails);
-    $arrLinkedinShareDetails = json_decode($htmlLinkedinShareDetails, true);
-    $intLinkedinShareCount =  $arrLinkedinShareDetails['count'];
+    $key = 'ssba-lic-'.md5($urlCurrentPage);
+    $intLinkedinShareCount = get_transient($key);
+    if ($intLinkedinShareCount === false) {
+
+        // get results from linkedin and return the number of shares
+        $htmlLinkedinShareDetails = file_get_contents('http://www.linkedin.com/countserv/count/share?url=' . $urlCurrentPage);
+        $htmlLinkedinShareDetails = str_replace('IN.Tags.Share.handleCount(', '', $htmlLinkedinShareDetails);
+        $htmlLinkedinShareDetails = str_replace(');', '', $htmlLinkedinShareDetails);
+        $arrLinkedinShareDetails = json_decode($htmlLinkedinShareDetails, true);
+        $intLinkedinShareCount =  $arrLinkedinShareDetails['count'];
+        set_transient($key, $intLinkedinShareCount, 600);
+    }
     return ($intLinkedinShareCount ) ? $intLinkedinShareCount : '0';
 }
 
@@ -1179,12 +1212,17 @@ function ssba_pinterest($arrSettings, $urlCurrentPage, $strPageTitle, $booShowSh
 // get pinterest share count
 function getPinterestShareCount($urlCurrentPage) {
 
-	// get results from pinterest and return the number of shares
-    $htmlPinterestShareDetails = file_get_contents('http://api.pinterest.com/v1/urls/count.json?url=' . $urlCurrentPage);
-    $htmlPinterestShareDetails = str_replace('receiveCount(', '', $htmlPinterestShareDetails);
-    $htmlPinterestShareDetails = str_replace(')', '', $htmlPinterestShareDetails);
-    $arrPinterestShareDetails = json_decode($htmlPinterestShareDetails, true);
-    $intPinterestShareCount =  $arrPinterestShareDetails['count'];
+    $key = 'ssba-pc-'.md5($urlCurrentPage);
+    $intPinterestShareCount = get_transient($key);
+    if ($intPinterestShareCount === false) {
+        // get results from pinterest and return the number of shares
+        $htmlPinterestShareDetails = file_get_contents('http://api.pinterest.com/v1/urls/count.json?url=' . $urlCurrentPage);
+        $htmlPinterestShareDetails = str_replace('receiveCount(', '', $htmlPinterestShareDetails);
+        $htmlPinterestShareDetails = str_replace(')', '', $htmlPinterestShareDetails);
+        $arrPinterestShareDetails = json_decode($htmlPinterestShareDetails, true);
+        $intPinterestShareCount =  $arrPinterestShareDetails['count'];
+        set_transient($key, $intPinterestShareCount, 600);
+    }
     return ($intPinterestShareCount ) ? $intPinterestShareCount : '0';
 }
 
@@ -1224,10 +1262,17 @@ function ssba_stumbleupon($arrSettings, $urlCurrentPage, $strPageTitle, $booShow
 // get stumbleupon share count
 function getStumbleUponShareCount($urlCurrentPage) {
 
-	// get results from stumbleupon and return the number of shares
-    $htmlStumbleUponShareDetails = file_get_contents('http://www.stumbleupon.com/services/1.01/badge.getinfo?url=' . $urlCurrentPage);
-    $arrStumbleUponResult = json_decode($htmlStumbleUponShareDetails, true);
-    $intStumbleUponShareCount =  (isset($arrStumbleUponResult['result']['views']) ? $arrStumbleUponResult['result']['views'] : 0);
+    $key = 'ssba-suc-'.md5($urlCurrentPage);
+
+    $intStumbleUponShareCount = get_transient($key);
+    if ($intStumbleUponShareCount === false) {
+
+        // get results from stumbleupon and return the number of shares
+        $htmlStumbleUponShareDetails = file_get_contents('http://www.stumbleupon.com/services/1.01/badge.getinfo?url=' . $urlCurrentPage);
+        $arrStumbleUponResult = json_decode($htmlStumbleUponShareDetails, true);
+        $intStumbleUponShareCount =  (isset($arrStumbleUponResult['result']['views']) ? $arrStumbleUponResult['result']['views'] : 0);
+        set_transient($key, $intStumbleUponShareCount, 600);
+    }
     return ($intStumbleUponShareCount ) ? $intStumbleUponShareCount : '0';
 }
 
