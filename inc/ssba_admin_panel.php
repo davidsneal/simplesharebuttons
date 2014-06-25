@@ -47,6 +47,7 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 		
 		// hidden field to check for post IMPORTANT
 		$htmlShareButtonsForm .= '<input type="hidden" name="ssba_options" id="ssba_options" value="save" />';
+		$htmlShareButtonsForm .= wp_nonce_field('ssba_save_settings','ssba_save_nonce');
 		
 			//------ BASIC TAB -------//
 			

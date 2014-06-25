@@ -3,7 +3,7 @@
 Plugin Name: Simple Share Buttons Adder
 Plugin URI: http://www.simplesharebuttons.com
 Description: A simple plugin that enables you to add share buttons to all of your posts and/or pages.
-Version: 4.4
+Version: 4.5
 Author: David S. Neal
 Author URI: http://www.davidsneal.co.uk/
 License: GPLv2
@@ -41,7 +41,7 @@ GNU General Public License for more details.
 	function ssba_activate() {
 	
 		// insert default options for ssba
-		add_option('ssba_version', 				'4.4');
+		add_option('ssba_version', 				'4.5');
 		add_option('ssba_image_set', 			'somacro');
 		add_option('ssba_size', 				'35');
 		add_option('ssba_pages',				'');
@@ -330,8 +330,8 @@ GNU General Public License for more details.
 		// query the db for current ssba settings
 		$arrSettings = get_ssba_settings();
 
-		// check if not yet updated to 4.4
-		if ($arrSettings['ssba_version'] != '4.4') {
+		// check if not yet updated to 4.5
+		if ($arrSettings['ssba_version'] != '4.5') {
 		
 			// run the upgrade function
 			upgrade_ssba($arrSettings);		
@@ -357,7 +357,7 @@ GNU General Public License for more details.
 		add_option('ssba_rel_nofollow',	'');
 	
 		// update version number
-		update_option('ssba_version', '4.4');
+		update_option('ssba_version', '4.5');
 	}
 
 	// --------- SETTINGS PAGE ------------ //
@@ -378,67 +378,76 @@ GNU General Public License for more details.
 		// check for submitted form
 		if (isset($_POST['ssba_options'])) {
 		
-			// update existing ssba settings		
-			update_option('ssba_image_set', 			$_POST['ssba_image_set']);
-			update_option('ssba_size', 					$_POST['ssba_size']);
-			update_option('ssba_pages', 				(isset($_POST['ssba_pages']) ? $_POST['ssba_pages'] : NULL));
-			update_option('ssba_posts', 				(isset($_POST['ssba_posts']) ? $_POST['ssba_posts'] : NULL));
-			update_option('ssba_cats_archs', 			(isset($_POST['ssba_cats_archs']) ? $_POST['ssba_cats_archs'] : NULL));
-			update_option('ssba_homepage', 				(isset($_POST['ssba_homepage']) ? $_POST['ssba_homepage'] : NULL));
-			update_option('ssba_excerpts', 				(isset($_POST['ssba_excerpts']) ? $_POST['ssba_excerpts'] : NULL));
-			update_option('ssba_align', 				(isset($_POST['ssba_align']) ? $_POST['ssba_align'] : NULL));
-			update_option('ssba_padding', 				$_POST['ssba_padding']);								
-			update_option('ssba_before_or_after', 		$_POST['ssba_before_or_after']);
-			update_option('ssba_custom_styles', 		$_POST['ssba_custom_styles']);
-			update_option('ssba_email_message', 		stripslashes_deep($_POST['ssba_email_message']));
-			update_option('ssba_twitter_text', 			stripslashes_deep($_POST['ssba_twitter_text']));
-			update_option('ssba_buffer_text', 			stripslashes_deep($_POST['ssba_buffer_text']));
-			update_option('ssba_flattr_user_id', 		stripslashes_deep($_POST['ssba_flattr_user_id']));
-			update_option('ssba_flattr_url', 			stripslashes_deep($_POST['ssba_flattr_url']));
-			update_option('ssba_share_new_window', 		(isset($_POST['ssba_share_new_window']) ? $_POST['ssba_share_new_window'] : NULL));
-			update_option('ssba_link_to_ssb', 			(isset($_POST['ssba_link_to_ssb']) ? $_POST['ssba_link_to_ssb'] : NULL));
-			update_option('ssba_show_share_count', 		(isset($_POST['ssba_show_share_count']) ? $_POST['ssba_show_share_count'] : NULL));
-			update_option('ssba_share_count_style',		$_POST['ssba_share_count_style']);
-			update_option('ssba_share_count_css',		$_POST['ssba_share_count_css']);
-			update_option('ssba_share_count_once',		(isset($_POST['ssba_share_count_once']) ? $_POST['ssba_share_count_once'] : NULL));
-			update_option('ssba_widget_text',			$_POST['ssba_widget_text']);
-			update_option('ssba_rel_nofollow',			(isset($_POST['ssba_rel_nofollow']) ? $_POST['ssba_rel_nofollow'] : NULL));
+			// if the nonce doesn't check out...
+			if (!isset($_POST['ssba_save_nonce']) || !wp_verify_nonce($_POST['ssba_save_nonce'], 'ssba_save_settings')) {
 			
-			// share container
-			update_option('ssba_div_padding', 			$_POST['ssba_div_padding']);
-			update_option('ssba_div_rounded_corners', 	(isset($_POST['ssba_div_rounded_corners']) ? $_POST['ssba_div_rounded_corners'] : NULL));
-			update_option('ssba_border_width', 			$_POST['ssba_border_width']);
-			update_option('ssba_div_border', 			$_POST['ssba_div_border']);
-			update_option('ssba_div_background', 		$_POST['ssba_div_background']);
-
-			// text
-			update_option('ssba_share_text', 			stripslashes_deep($_POST['ssba_share_text']));	
-			update_option('ssba_text_placement', 		$_POST['ssba_text_placement']);	
-			update_option('ssba_font_family', 			$_POST['ssba_font_family']);	
-			update_option('ssba_font_color', 			$_POST['ssba_font_color']);	
-			update_option('ssba_font_size', 			$_POST['ssba_font_size']);	
-			update_option('ssba_font_weight', 			$_POST['ssba_font_weight']);	
-
-			// include
-			update_option('ssba_selected_buttons', 		$_POST['ssba_selected_buttons']);
-			
-			// custom images
-			update_option('ssba_custom_email', 			$_POST['ssba_custom_email']);
-			update_option('ssba_custom_google', 		$_POST['ssba_custom_google']);
-			update_option('ssba_custom_facebook', 		$_POST['ssba_custom_facebook']);
-			update_option('ssba_custom_twitter', 		$_POST['ssba_custom_twitter']);
-			update_option('ssba_custom_diggit', 		$_POST['ssba_custom_diggit']);
-			update_option('ssba_custom_linkedin', 		$_POST['ssba_custom_linkedin']);
-			update_option('ssba_custom_reddit', 		$_POST['ssba_custom_reddit']);
-			update_option('ssba_custom_stumbleupon', 	$_POST['ssba_custom_stumbleupon']);
-			update_option('ssba_custom_pinterest', 		$_POST['ssba_custom_pinterest']);
-			update_option('ssba_custom_buffer', 		$_POST['ssba_custom_buffer']);
-			update_option('ssba_custom_flattr', 		$_POST['ssba_custom_flattr']);
-			update_option('ssba_custom_tumblr', 		$_POST['ssba_custom_tumblr']);
-			update_option('ssba_custom_print', 			$_POST['ssba_custom_print']);
-
-			// show settings saved message
-			$htmlSettingsSaved = '<div id="setting-error-settings_updated" class="updated settings-error"><p><strong>Your settings have been saved. <a href="' . site_url() . '">Visit your site</a> to see how your buttons look!</strong></p></div>';
+				// don't save data
+				print 'Sorry, your nonce did not verify.';
+			   	exit;
+			} else { // everything seems to check out
+		
+				// update existing ssba settings		
+				update_option('ssba_image_set', 			$_POST['ssba_image_set']);
+				update_option('ssba_size', 					$_POST['ssba_size']);
+				update_option('ssba_pages', 				(isset($_POST['ssba_pages']) ? $_POST['ssba_pages'] : NULL));
+				update_option('ssba_posts', 				(isset($_POST['ssba_posts']) ? $_POST['ssba_posts'] : NULL));
+				update_option('ssba_cats_archs', 			(isset($_POST['ssba_cats_archs']) ? $_POST['ssba_cats_archs'] : NULL));
+				update_option('ssba_homepage', 				(isset($_POST['ssba_homepage']) ? $_POST['ssba_homepage'] : NULL));
+				update_option('ssba_excerpts', 				(isset($_POST['ssba_excerpts']) ? $_POST['ssba_excerpts'] : NULL));
+				update_option('ssba_align', 				(isset($_POST['ssba_align']) ? $_POST['ssba_align'] : NULL));
+				update_option('ssba_padding', 				$_POST['ssba_padding']);								
+				update_option('ssba_before_or_after', 		$_POST['ssba_before_or_after']);
+				update_option('ssba_custom_styles', 		$_POST['ssba_custom_styles']);
+				update_option('ssba_email_message', 		stripslashes_deep($_POST['ssba_email_message']));
+				update_option('ssba_twitter_text', 			stripslashes_deep($_POST['ssba_twitter_text']));
+				update_option('ssba_buffer_text', 			stripslashes_deep($_POST['ssba_buffer_text']));
+				update_option('ssba_flattr_user_id', 		stripslashes_deep($_POST['ssba_flattr_user_id']));
+				update_option('ssba_flattr_url', 			stripslashes_deep($_POST['ssba_flattr_url']));
+				update_option('ssba_share_new_window', 		(isset($_POST['ssba_share_new_window']) ? $_POST['ssba_share_new_window'] : NULL));
+				update_option('ssba_link_to_ssb', 			(isset($_POST['ssba_link_to_ssb']) ? $_POST['ssba_link_to_ssb'] : NULL));
+				update_option('ssba_show_share_count', 		(isset($_POST['ssba_show_share_count']) ? $_POST['ssba_show_share_count'] : NULL));
+				update_option('ssba_share_count_style',		$_POST['ssba_share_count_style']);
+				update_option('ssba_share_count_css',		$_POST['ssba_share_count_css']);
+				update_option('ssba_share_count_once',		(isset($_POST['ssba_share_count_once']) ? $_POST['ssba_share_count_once'] : NULL));
+				update_option('ssba_widget_text',			$_POST['ssba_widget_text']);
+				update_option('ssba_rel_nofollow',			(isset($_POST['ssba_rel_nofollow']) ? $_POST['ssba_rel_nofollow'] : NULL));
+				
+				// share container
+				update_option('ssba_div_padding', 			$_POST['ssba_div_padding']);
+				update_option('ssba_div_rounded_corners', 	(isset($_POST['ssba_div_rounded_corners']) ? $_POST['ssba_div_rounded_corners'] : NULL));
+				update_option('ssba_border_width', 			$_POST['ssba_border_width']);
+				update_option('ssba_div_border', 			$_POST['ssba_div_border']);
+				update_option('ssba_div_background', 		$_POST['ssba_div_background']);
+	
+				// text
+				update_option('ssba_share_text', 			stripslashes_deep($_POST['ssba_share_text']));	
+				update_option('ssba_text_placement', 		$_POST['ssba_text_placement']);	
+				update_option('ssba_font_family', 			$_POST['ssba_font_family']);	
+				update_option('ssba_font_color', 			$_POST['ssba_font_color']);	
+				update_option('ssba_font_size', 			$_POST['ssba_font_size']);	
+				update_option('ssba_font_weight', 			$_POST['ssba_font_weight']);	
+	
+				// include
+				update_option('ssba_selected_buttons', 		$_POST['ssba_selected_buttons']);
+				
+				// custom images
+				update_option('ssba_custom_email', 			$_POST['ssba_custom_email']);
+				update_option('ssba_custom_google', 		$_POST['ssba_custom_google']);
+				update_option('ssba_custom_facebook', 		$_POST['ssba_custom_facebook']);
+				update_option('ssba_custom_twitter', 		$_POST['ssba_custom_twitter']);
+				update_option('ssba_custom_diggit', 		$_POST['ssba_custom_diggit']);
+				update_option('ssba_custom_linkedin', 		$_POST['ssba_custom_linkedin']);
+				update_option('ssba_custom_reddit', 		$_POST['ssba_custom_reddit']);
+				update_option('ssba_custom_stumbleupon', 	$_POST['ssba_custom_stumbleupon']);
+				update_option('ssba_custom_pinterest', 		$_POST['ssba_custom_pinterest']);
+				update_option('ssba_custom_buffer', 		$_POST['ssba_custom_buffer']);
+				update_option('ssba_custom_flattr', 		$_POST['ssba_custom_flattr']);
+				update_option('ssba_custom_tumblr', 		$_POST['ssba_custom_tumblr']);
+				update_option('ssba_custom_print', 			$_POST['ssba_custom_print']);
+	
+				// show settings saved message
+				$htmlSettingsSaved = '<div id="setting-error-settings_updated" class="updated settings-error"><p><strong>Your settings have been saved. <a href="' . site_url() . '">Visit your site</a> to see how your buttons look!</strong></p></div>';
+			}
 		}
 		
 		// include then run the upgrade script
@@ -656,7 +665,7 @@ GNU General Public License for more details.
 				$strShareText = $arrSettings['ssba_share_text'];
 						
 			// ssba div
-			$htmlShareButtons = '<!-- Simple Share Buttons Adder (4.4) simplesharebuttons.com --><div class="ssba">';
+			$htmlShareButtons = '<!-- Simple Share Buttons Adder (4.5) simplesharebuttons.com --><div class="ssba">';
 			
 			// center if set so
 			$htmlShareButtons.= '<div style="text-align:'.$arrSettings['ssba_align'].'">';
