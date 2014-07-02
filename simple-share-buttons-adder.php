@@ -339,7 +339,7 @@ GNU General Public License for more details.
 		
 		
 		// check if any buttons have been selected
-		if ($arrSettings['ssba_selected_buttons'] == '' && $_GET['page'] != 'simple-share-buttons-adder') {
+		if ($arrSettings['ssba_selected_buttons'] == '' && isset( $_GET['page'] ) && $_GET['page'] != 'simple-share-buttons-adder') {
 		
 			// output a warning that buttons need configuring and provide a link to settings
 			echo '<div id="ssba-warning" class="updated fade"><p>Your <strong>Simple Share Buttons</strong> need <a href="admin.php?page=simple-share-buttons-adder"><strong>configuration</strong></a> before they will appear. <strong>View the tutorial video <a href="http://www.youtube.com/watch?v=p03B4C3QMzs" target="_blank">here</a></strong></p></div>';
