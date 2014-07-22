@@ -42,6 +42,9 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 
 <h2>Changelog</h2>
 
+<h3>4.6</h3>
+* Fix notice regarding ssba_excerpts
+
 <h3>4.5</h3>
 * Hotfix for potential vulnerability
 

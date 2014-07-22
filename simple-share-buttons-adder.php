@@ -3,7 +3,7 @@
 Plugin Name: Simple Share Buttons Adder
 Plugin URI: http://www.simplesharebuttons.com
 Description: A simple plugin that enables you to add share buttons to all of your posts and/or pages.
-Version: 4.5
+Version: 4.6
 Author: David S. Neal
 Author URI: http://www.davidsneal.co.uk/
 License: GPLv2
@@ -41,7 +41,7 @@ GNU General Public License for more details.
 	function ssba_activate() {
 	
 		// insert default options for ssba
-		add_option('ssba_version', 				'4.5');
+		add_option('ssba_version', 				'4.6');
 		add_option('ssba_image_set', 			'somacro');
 		add_option('ssba_size', 				'35');
 		add_option('ssba_pages',				'');
@@ -330,8 +330,8 @@ GNU General Public License for more details.
 		// query the db for current ssba settings
 		$arrSettings = get_ssba_settings();
 
-		// check if not yet updated to 4.5
-		if ($arrSettings['ssba_version'] != '4.5') {
+		// check if not yet updated to 4.6
+		if ($arrSettings['ssba_version'] != '4.6') {
 		
 			// run the upgrade function
 			upgrade_ssba($arrSettings);		
@@ -355,9 +355,12 @@ GNU General Public License for more details.
 		// new for 3.8
 		add_option('ssba_widget_text',	'');
 		add_option('ssba_rel_nofollow',	'');
+		
+		// added pre 4.5, added in 4.6 to fix notice
+		add_option('ssba_rel_nofollow',	'');
 	
 		// update version number
-		update_option('ssba_version', '4.5');
+		update_option('ssba_version', '4.6');
 	}
 
 	// --------- SETTINGS PAGE ------------ //
@@ -665,7 +668,7 @@ GNU General Public License for more details.
 				$strShareText = $arrSettings['ssba_share_text'];
 						
 			// ssba div
-			$htmlShareButtons = '<!-- Simple Share Buttons Adder (4.5) simplesharebuttons.com --><div class="ssba">';
+			$htmlShareButtons = '<!-- Simple Share Buttons Adder (4.6) simplesharebuttons.com --><div class="ssba">';
 			
 			// center if set so
 			$htmlShareButtons.= '<div style="text-align:'.$arrSettings['ssba_align'].'">';
