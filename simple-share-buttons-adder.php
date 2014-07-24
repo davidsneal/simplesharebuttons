@@ -491,6 +491,7 @@ GNU General Public License for more details.
 										.ssba img		
 										{ 	
 											width: ' . $arrSettings['ssba_size'] . 'px !important;
+											height: auto;
 											padding: ' . $arrSettings['ssba_padding'] . 'px;
 											border:  0;
 											box-shadow: none !important;
