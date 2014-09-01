@@ -3,7 +3,7 @@
 Plugin Name: Simple Share Buttons Adder
 Plugin URI: http://www.simplesharebuttons.com
 Description: A simple plugin that enables you to add share buttons to all of your posts and/or pages.
-Version: 4.6
+Version: 4.7
 Author: David S. Neal
 Author URI: http://www.davidsneal.co.uk/
 License: GPLv2
@@ -41,7 +41,7 @@ GNU General Public License for more details.
 	function ssba_activate() {
 	
 		// insert default options for ssba
-		add_option('ssba_version', 				'4.6');
+		add_option('ssba_version', 				'4.7');
 		add_option('ssba_image_set', 			'somacro');
 		add_option('ssba_size', 				'35');
 		add_option('ssba_pages',				'');
@@ -75,7 +75,7 @@ GNU General Public License for more details.
 		add_option('ssba_div_background', 		'');
 		
 		// share text
-		add_option('ssba_share_text', 			"Don't be shellfish...");
+		add_option('ssba_share_text', 			"It's only fair to share...");
 		add_option('ssba_text_placement', 		'left');
 		add_option('ssba_font_family', 			'Indie Flower');
 		add_option('ssba_font_color',			'');	
@@ -330,8 +330,8 @@ GNU General Public License for more details.
 		// query the db for current ssba settings
 		$arrSettings = get_ssba_settings();
 
-		// check if not yet updated to 4.6
-		if ($arrSettings['ssba_version'] != '4.6') {
+		// check if not yet updated to 4.7
+		if ($arrSettings['ssba_version'] != '4.7') {
 		
 			// run the upgrade function
 			upgrade_ssba($arrSettings);		
@@ -360,7 +360,7 @@ GNU General Public License for more details.
 		add_option('ssba_rel_nofollow',	'');
 	
 		// update version number
-		update_option('ssba_version', '4.6');
+		update_option('ssba_version', '4.7');
 	}
 
 	// --------- SETTINGS PAGE ------------ //
@@ -666,9 +666,20 @@ GNU General Public License for more details.
 			else 								
 				// use normal share text
 				$strShareText = $arrSettings['ssba_share_text'];
+				
+			// if post type is download (EDD clashes)
+			if(get_post_type( get_the_ID()) == "download") {
+
+				// check for and remove added text
+				preg_match_all("/>(.*?)>/", $strPageTitle, $matches);
+				$title =  $matches[0][0];
+				$title = ltrim($title, '>');
+				$title = rtrim ($title, '</span>');
+				$strPageTitle = $title;	
+			}
 						
 			// ssba div
-			$htmlShareButtons = '<!-- Simple Share Buttons Adder (4.6) simplesharebuttons.com --><div class="ssba">';
+			$htmlShareButtons = '<!-- Simple Share Buttons Adder (4.7) simplesharebuttons.com --><div class="ssba">';
 			
 			// center if set so
 			$htmlShareButtons.= '<div style="text-align:'.$arrSettings['ssba_align'].'">';
@@ -771,7 +782,7 @@ GNU General Public License for more details.
 	add_filter( 'the_content', 'show_share_buttons');	
 	
 	// if we wish to add to excerpts
-	if($arrSettings['ssba_excerpts'] == 'Y') {
+	if(isset($arrSettings['ssba_excerpts']) && $arrSettings['ssba_excerpts'] == 'Y') {
 		
 		// add a hook
 		add_filter( 'the_excerpt', 'show_share_buttons');

@@ -15,7 +15,7 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 		
 		// top nav
 		$htmlShareButtonsForm .= '<div id="ssba-top-nav">';
-			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com/forums/forum/wordpress-forum/" target="_blank">Support</a>';
+			$htmlShareButtonsForm .= '<a href="http://wordpress.org/support/plugin/simple-share-buttons-adder" target="_blank">Support</a>';
 			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com/wordpress-faq/" target="_blank">FAQ</a>';
 			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com/showcase/" target="_blank">Showcase</a>';
 			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com/donate/" target="_blank">Donate</a>';
@@ -555,6 +555,29 @@ CODE;
 	
 	// author div
 	$htmlShareButtonsForm .= '	<div class="ssba-box ssba-shadow">
+									<table class="centerme">
+										<tr>
+											<td>
+												<a href="http://www.simplesharebuttons.com/plus"><h2>Simple Share Buttons Plus</h2></a>
+												<p class="description"><a href="http://www.simplesharebuttons.com/plus">www.simplesharebuttons.com/plus</a></p>
+											</td>
+										</tr>
+										<tr>
+											<td><span class="ssbp-popup">Popup share windows</span></td>
+										</tr>
+										<tr>
+											<td><span class="ssbp-retina">Retina-ready CSS Sprites</span></td>
+										</tr>
+										<tr>
+											<td><span class="ssbp-tracking">Built-in tracking</span></td>
+										</tr>
+										<tr>
+											<td><span class="ssbp-hover">Hover and click effects</span></td>
+										</tr>
+										<tr>
+											<td></td>
+										</tr>
+									</table>
 									<div class="ssba-box-content">
 										<div class="author-shortcodes">
 											<div class="author-inner">
@@ -570,13 +593,6 @@ CODE;
 									</div></br>
 									<table class="centerme">
 										<tr>
-											<td>
-												<a href="http://www.simplesharebuttons.com/plus"><h3>Check out Simple Share Buttons Plus!</h3></a>
-												<h3><a href="#TB_inline?width=600&height=450&inlineId=ssbp-info" class="thickbox">What\'s different?</a></h3>
-												<iframe width="330" height="186" src="//www.youtube.com/embed/SFO9Uss-LuQ?rel=0" frameborder="0" allowfullscreen></iframe>
-											</td>
-										</tr>
-										<tr>
 											<td class="centerme"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="75WFUCTYND76Q">
@@ -586,8 +602,6 @@ CODE;
 
 											</td>
 										</tr>
-									</table>
-									<table class="centerme">
 										<tr>
 											<td><a href="http://wordpress.org/support/view/plugin-reviews/simple-share-buttons-adder" target="_blank" title="Rate 5 Star">Rate the plugin<br/><img src="' . plugins_url() . '/simple-share-buttons-adder/images/stars.png"></a></br></td>
 										</tr>
@@ -596,17 +610,6 @@ CODE;
 										<div class="et-box-content">
 										<p><strong>Visit <a href="http://make.simplesharebuttons.com" target="blank">make.simplesharebuttons.com</a><br/>to make custom-colour buttons</strong></p>
 									</div></div>
-								</div>
-								<div id="ssbp-info" style="display:none;">
-									<div class="ssbp-info centerme">
-										<h1 class="blueme">Simple Share Buttons Plus</h1>
-										 <p class="description">Find out more at <a class="blueme" href="http://www.simplesharebuttons.com/plus">www.simplesharebuttons.com/plus</a></p>
-									     <p class="ssbp-popup">Popup share windows</p>
-									     <p class="ssbp-retina">Retina-ready CSS Sprite</p>
-									     <p class="ssbp-tracking">Built-in tracking</p>
-									     <p class="ssbp-hover">Hover and click effects</p>
-									     <p class="ssbp-vk">VK button added</p>
-									</div>
 								</div>';
 
 	// close author cell and close table
