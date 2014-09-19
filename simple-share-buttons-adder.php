@@ -909,12 +909,12 @@ function ssba_facebook($arrSettings, $urlCurrentPage, $strPageTitle, $booShowSha
 
 // get facebook share count
 function getFacebookShareCount($urlCurrentPage) {
-
 	// get results from facebook and return the number of shares
-    $htmlFacebookShareDetails = file_get_contents('http://graph.facebook.com/' . $urlCurrentPage);
-    $arrFacebookShareDetails = json_decode($htmlFacebookShareDetails, true);
-    $intFacebookShareCount =  (isset($arrFacebookShareDetails['shares']) ? $arrFacebookShareDetails['shares'] : 0);
-    return ($intFacebookShareCount ) ? $intFacebookShareCount : '0';
+	$fbFQLRes = file_get_contents('https://api.facebook.com/method/fql.query?query=select%20share_count%20from%20link_stat%20where%20url=%22'.$urlCurrentPage.'%22');
+	$ResXMLObj = simplexml_load_string($fbFQLRes);
+	$ResXMLJson = json_encode($ResXMLObj);
+	$ResXMLArr = json_decode($ResXMLJson, true);
+	return number_format($ResXMLArr['link_stat']['share_count']);
 }
 
 // get twitter button
