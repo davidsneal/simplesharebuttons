@@ -768,13 +768,13 @@ GNU General Public License for more details.
 	}
 
 	// add share buttons to content	
-	add_filter( 'the_content', 'show_share_buttons');	
+	add_filter( 'the_content', 'show_share_buttons', 99 );	
 	
 	// if we wish to add to excerpts
 	if($arrSettings['ssba_excerpts'] == 'Y') {
 		
 		// add a hook
-		add_filter( 'the_excerpt', 'show_share_buttons');
+		add_filter( 'the_excerpt', 'show_share_buttons', 99 );
 	}
 
 	// shortcode for adding buttons
