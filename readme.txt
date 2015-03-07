@@ -170,9 +170,9 @@ A step by step guide on how to configure this plugin can be found <a href="http:
 
 = 2.5 =
 * Further Twitter customisation for Twitter under 'Advanced' options!
-* Buffer and Flattr buttons added! (share counts still to come!) 
+* Buffer and Flattr buttons added! (share counts still to come!)
 * Flattr requires you to enter your user ID under the advanced tab, you must also submit pages/posts here http://flattr.com/submit
-* You can now set a specified URL and Title when using shortcode - [ssba url="http://www.simplesharebuttons.com" title="Simple Share Buttons"]! 
+* You can now set a specified URL and Title when using shortcode - [ssba url="http://www.simplesharebuttons.com" title="Simple Share Buttons"]!
 * When doing the above, both a title and url must be specified.
 * 'Default' image set has been removed! If you are currently using this image set, it will be replaced with 'Somacro'!
 * Only relevant fonts are loaded if specified.

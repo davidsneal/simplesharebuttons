@@ -4,15 +4,15 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 
 	// variables
 	$htmlShareButtonsForm = '';
-	
+
 	// header
 	$htmlShareButtonsForm .= '<div id="ssba-header">';
-	
+
 		//logo
 		$htmlShareButtonsForm .= '<div id="ssba-logo">';
 			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com" target="_blank"><img src="' . plugins_url() . '/simple-share-buttons-adder/images/simplesharebuttons.png' . '" class="ssba-logo-img" /></a>';
 		$htmlShareButtonsForm .= '</div>';
-		
+
 		// top nav
 		$htmlShareButtonsForm .= '<div id="ssba-top-nav">';
 			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com/forums/forum/wordpress-forum/" target="_blank">Support</a>';
@@ -21,10 +21,10 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 			$htmlShareButtonsForm .= '<a href="http://www.simplesharebuttons.com/donate/" target="_blank">Donate</a>';
 			$htmlShareButtonsForm .= '<a href="https://github.com/davidsneal/simplesharebuttons" target="_blank">GitHub</a>';
 		$htmlShareButtonsForm .= '</div>';
-		
+
 	// close header
 	$htmlShareButtonsForm .= '</div>';
-		
+
 	// tabs
 	$htmlShareButtonsForm .= '<div id="ssba-tabs">';
 	$htmlShareButtonsForm .= '<a id="ssba_tab_basic" class="ssba-selected-tab" href="javascript:;">Basic</a>';
@@ -32,25 +32,25 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 	$htmlShareButtonsForm .= '<a id="ssba_tab_counters" href="javascript:;">Counters</a>';
 	$htmlShareButtonsForm .= '<a id="ssba_tab_advanced" href="javascript:;">Advanced</a>';
 	$htmlShareButtonsForm .= '</div>';
-	
+
 	// html form
 	$htmlShareButtonsForm .= '<div class="wrap">';
-		
+
 		// create a table and cell to contain all minus the author cell
 		$htmlShareButtonsForm .= '<table><tr><td style="width: 610px; vertical-align: top;">';
-	
+
 		// show settings saved message if set
 		(isset($htmlSettingsSaved) ? $htmlShareButtonsForm .= $htmlSettingsSaved : NULL);
-		
+
 		// start form
 		$htmlShareButtonsForm .= '<form method="post">';
-		
+
 		// hidden field to check for post IMPORTANT
 		$htmlShareButtonsForm .= '<input type="hidden" name="ssba_options" id="ssba_options" value="save" />';
 		$htmlShareButtonsForm .= wp_nonce_field('ssba_save_settings','ssba_save_nonce');
-		
+
 			//------ BASIC TAB -------//
-			
+
 			$htmlShareButtonsForm .= '<div id="ssba_settings_basic">';
 				$htmlShareButtonsForm .= '<h2>Basic Settings</h2>';
 				$htmlShareButtonsForm .= '<table class="form-table">';
@@ -98,7 +98,7 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 						$htmlShareButtonsForm .= "</p></td>";
 					$htmlShareButtonsForm .= '</tr>';
 				$htmlShareButtonsForm .= '</table>';
-				
+
 				// --------- CUSTOM IMAGES ------------ //
 				$htmlShareButtonsForm .= '<div id="ssba-custom-images"' . ($arrSettings['ssba_image_set'] != 'custom' ? 'style="display: none;"' : NULL) . '>';
 				$htmlShareButtonsForm .= '<h4>Custom Images</h4>';
@@ -196,7 +196,7 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 					$htmlShareButtonsForm .= '</tr>';
 				$htmlShareButtonsForm .= '</table>';
 				$htmlShareButtonsForm .= '</div>';
-				
+
 				// --------- NON-CUSTOM IMAGE SETTINGS ------------ //
 				$htmlShareButtonsForm .= '<div id="ssba-image-settings">';
 				$htmlShareButtonsForm .= '<table class="form-table">';
@@ -231,18 +231,18 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 				$htmlShareButtonsForm .= '</div>';
 			$htmlShareButtonsForm .= '</div>';
 			$htmlShareButtonsForm .= '<input type="hidden" name="ssba_selected_buttons" id="ssba_selected_buttons" />';
-			
+
 		//------ STYLING TAB ------//
-		
+
 		//----- STYLING SETTINGS DIV ------//
 		$htmlShareButtonsForm .= '<div id="ssba_settings_styling" style="display: none;">';
 			$htmlShareButtonsForm .= '<h2>Style Settings</h2>';
-		
+
 			// toggle setting options
 			$htmlShareButtonsForm .= '<div id="ssba_toggle_styling" style="margin: 10px 0 20px;">';
 			$htmlShareButtonsForm .= 'Toggle between <a href="javascript:;" id="ssba_button_normal_settings">assisted styling</a> and <a href="javascript:;" id="ssba_button_custom_styles">custom CSS</a>.';
 			$htmlShareButtonsForm .= '</div>';
-		
+
 			// normal settings options
 			$htmlShareButtonsForm .= '<div id="ssba_normal_settings" ' . ($arrSettings['ssba_custom_styles'] != '' ? 'style="display: none;"' : NULL) . '>';
 				$htmlShareButtonsForm .= '<table class="form-table">';
@@ -343,7 +343,7 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 					$htmlShareButtonsForm .= '</tr>';
 				$htmlShareButtonsForm .= '</table>';
 			$htmlShareButtonsForm .= '</div>';
-				
+
 			// custom style field
 			$htmlShareButtonsForm .= '<div id="ssba_option_custom_css" ' . ($arrSettings['ssba_custom_styles'] == '' ? 'style="display: none;"' : NULL) . '>';
 				$htmlShareButtonsForm .= '<table>';
@@ -354,7 +354,7 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 						$htmlShareButtonsForm .= '<td>';
 							$htmlShareButtonsForm .= <<<CODE
 													<h3>Default CSS</h3>
-													.ssba img</br>	
+													.ssba img</br>
 													{ 	</br>
 														width: 35px;</br>
 														padding: 6px;</br>
@@ -380,21 +380,21 @@ CODE;
 					$htmlShareButtonsForm .= '</tr>';
 				$htmlShareButtonsForm .= '</table>';
 			$htmlShareButtonsForm .= '</div>';
-			
+
 		// close styling tab
 		$htmlShareButtonsForm .= '</div>';
-		
+
 		//------ COUNTERS TAB ------//
-		
+
 		//----- COUNTERS SETTINGS DIV ------//
 		$htmlShareButtonsForm .= '<div id="ssba_settings_counters" style="display: none;">';
 			$htmlShareButtonsForm .= '<h2>Counter Settings</h2>';
-		
+
 			// toggle setting options
 			$htmlShareButtonsForm .= '<div id="ssba_toggle_styling" style="margin: 10px 0 20px;">';
 			$htmlShareButtonsForm .= '<p>Toggle between <a href="javascript:;" id="ssba_counter_normal_settings">assisted styling</a> and <a href="javascript:;" id="ssba_counter_custom_styles">custom CSS</a>.</p>';
 			$htmlShareButtonsForm .= '</div>';
-			
+
 			// activate option
 			$htmlShareButtonsForm .= '<table class="form-table">';
 				$htmlShareButtonsForm .= '<tr valign="top">';
@@ -410,7 +410,7 @@ CODE;
 					$htmlShareButtonsForm .= '<p class="description">This option is recommended, it deactivates share counts for categories and archives allowing them to load more quickly</p></td>';
 				$htmlShareButtonsForm .= '</tr>';
 			$htmlShareButtonsForm .= '</table>';
-		
+
 			// normal counter settings options
 			$htmlShareButtonsForm .= '<div id="ssba_counter_settings" ' . ($arrSettings['ssba_share_count_css'] != '' ? 'style="display: none;"' : NULL) . '>';
 				$htmlShareButtonsForm .= '<table class="form-table">';
@@ -425,7 +425,7 @@ CODE;
 					$htmlShareButtonsForm .= '</tr>';
 				$htmlShareButtonsForm .= '</table>';
 			$htmlShareButtonsForm .= '</div>';
-				
+
 			// custom counter style field
 			$htmlShareButtonsForm .= '<div id="ssba_counter_custom_css" ' . ($arrSettings['ssba_share_count_css'] == '' ? 'style="display: none;"' : NULL) . '>';
 				$htmlShareButtonsForm .= '<table>';
@@ -483,12 +483,12 @@ CODE;
 					$htmlShareButtonsForm .= '</tr>';
 				$htmlShareButtonsForm .= '</table>';
 			$htmlShareButtonsForm .= '</div>';
-			
+
 		// close counters tab
 		$htmlShareButtonsForm .= '</div>';
-		
+
 		//------ ADVANCED TAB ------//
-		
+
 		$htmlShareButtonsForm .= '<div id="ssba_settings_advanced" style="display: none;">';
 			$htmlShareButtonsForm .= '<h2>Advanced Settings</h2>';
 			$htmlShareButtonsForm .= '<table class="form-table">';
@@ -541,7 +541,7 @@ CODE;
 				$htmlShareButtonsForm .= '</tr>';
 			$htmlShareButtonsForm .= '</table>';
 		$htmlShareButtonsForm .= '</div>';
-		
+
 		// save button
 		$htmlShareButtonsForm .= '<table class="form-table">';
 				$htmlShareButtonsForm .= '<tr valign="top">';
@@ -549,10 +549,10 @@ CODE;
 				$htmlShareButtonsForm .= '</tr>';
 			$htmlShareButtonsForm .= '</table>';
 		$htmlShareButtonsForm .= '</form>';
-		
+
 	// close form cell and open author one
-	$htmlShareButtonsForm .= '</td><td style="vertical-align: top;">';	
-	
+	$htmlShareButtonsForm .= '</td><td style="vertical-align: top;">';
+
 	// author div
 	$htmlShareButtonsForm .= '	<div class="ssba-box ssba-shadow">
 									<div class="ssba-box-content">
@@ -561,7 +561,7 @@ CODE;
 												<div class="author-image">
 													<img src="' . plugins_url() . '/simple-share-buttons-adder/images/david.png" style="float: left; margin-right: 10px;" alt="">
 													<div class="author-overlay"></div>
-												</div> <!-- .author-image --> 
+												</div> <!-- .author-image -->
 												<div class="author-info">
 													<a href="http://www.davidsneal.co.uk" target="_blank">David Neal</a> – Married, father of one (another on the way!), with an obsession with websites, coding and gaming. This plugin and its website has been funded by myself.
 												</div> <!-- .author-info -->
@@ -610,11 +610,11 @@ CODE;
 								</div>';
 
 	// close author cell and close table
-	$htmlShareButtonsForm .= '</td></tr></table>';							
-								
-	// close #wrap	
+	$htmlShareButtonsForm .= '</td></tr></table>';
+
+	// close #wrap
 	$htmlShareButtonsForm .= '</div>';
-	
+
 	echo $htmlShareButtonsForm;
 }
 
@@ -627,22 +627,22 @@ function getSelectedSSBA($strSelectedSSBA) {
 
 	// if there are some selected buttons
 	if ($strSelectedSSBA != '') {
-	
+
 		// explode saved include list and add to a new array
 		$arrSelectedSSBA = explode(',', $strSelectedSSBA);
-		
+
 		// check if array is not empty
 		if ($arrSelectedSSBA != '') {
-		
+
 			// for each included button
 			foreach ($arrSelectedSSBA as $strSelected) {
-			
+
 				// add a list item for each selected option
 				$htmlSelectedList .= '<li id="' . $strSelected . '">' . $strSelected . '</li>';
 			}
 		}
 	}
-	
+
 	// return html list options
 	return $htmlSelectedList;
 }
@@ -653,27 +653,27 @@ function getAvailableSSBA($strSelectedSSBA) {
 	// variables
 	$htmlAvailableList = '';
 	$arrSelectedSSBA = '';
-	
+
 	// explode saved include list and add to a new array
 	$arrSelectedSSBA = explode(',', $strSelectedSSBA);
-	
+
 	// create array of all available buttons
 	$arrAllAvailableSSBA = array('buffer', 'diggit', 'email', 'facebook', 'flattr', 'google', 'linkedin', 'pinterest', 'print', 'reddit', 'stumbleupon', 'tumblr', 'twitter');
-	
+
 	// explode saved include list and add to a new array
 	$arrAvailableSSBA = array_diff($arrAllAvailableSSBA, $arrSelectedSSBA);
-	
+
 	// check if array is not empty
 	if ($arrSelectedSSBA != '') {
-	
+
 		// for each included button
 		foreach ($arrAvailableSSBA as $strAvailable) {
-		
+
 			// add a list item for each available option
 			$htmlAvailableList .= '<li id="' . $strAvailable . '">' . $strAvailable . '</li>';
 		}
 	}
-	
+
 	// return html list options
 	return $htmlAvailableList;
 }
