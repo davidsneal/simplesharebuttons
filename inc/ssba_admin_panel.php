@@ -56,13 +56,13 @@ function ssba_admin_panel($arrSettings, $htmlSettingsSaved) {
 				$htmlShareButtonsForm .= '<table class="form-table">';
 					$htmlShareButtonsForm .= '<tr><td><h3>Where</h3></td></tr>';
 					$htmlShareButtonsForm .= '<tr valign="top">';
-						$htmlShareButtonsForm .= '<th scope="row" style="width: 120px;"><label>Location:</label></th>';
+						$htmlShareButtonsForm .= '<th scope="row" style="width: 120px;">Locations:</th>';
 						$htmlShareButtonsForm .= '<td style="font-size: 12px;">';
-						$htmlShareButtonsForm .= 'Homepage&nbsp;<input type="checkbox" name="ssba_homepage" id="ssba_homepage" ' 	 	. ($arrSettings['ssba_homepage'] 	== 'Y'   ? 'checked' : NULL) . ' value="Y" style="margin-right: 10px;" />';
-						$htmlShareButtonsForm .= 'Pages&nbsp;<input type="checkbox" name="ssba_pages" id="ssba_pages" ' 		 		. ($arrSettings['ssba_pages'] 		== 'Y'   ? 'checked' : NULL) . ' value="Y" style="margin-right: 10px;" />';
-						$htmlShareButtonsForm .= 'Posts&nbsp;<input type="checkbox" name="ssba_posts" id="ssba_posts" ' 		 		. ($arrSettings['ssba_posts'] 		== 'Y'   ? 'checked' : NULL) . ' value="Y" style="margin-right: 10px;" />';
-						$htmlShareButtonsForm .= 'Categories&#47;Archives&nbsp;<input type="checkbox" name="ssba_cats_archs" id="ssba_cats_archs" '	. ($arrSettings['ssba_cats_archs']	== 'Y'   ? 'checked' : NULL) . ' value="Y" style="margin-right: 10px;" />';
-						$htmlShareButtonsForm .= 'Excerpts&nbsp;<input type="checkbox" name="ssba_excerpts" id="ssba_excerpts" '	. ($arrSettings['ssba_excerpts']	== 'Y'   ? 'checked' : NULL) . ' value="Y" style="margin-right: 10px;" />';
+						$htmlShareButtonsForm .= '<label>Homepage&nbsp;<input type="checkbox" name="ssba_homepage" id="ssba_homepage" ' 	 	. ($arrSettings['ssba_homepage'] 	== 'Y'   ? 'checked' : NULL) . ' value="Y" style="margin-right: 10px;" /></label>';
+						$htmlShareButtonsForm .= '<label>Pages&nbsp;<input type="checkbox" name="ssba_pages" id="ssba_pages" ' 		 		. ($arrSettings['ssba_pages'] 		== 'Y'   ? 'checked' : NULL) . ' value="Y" style="margin-right: 10px;" /></label>';
+						$htmlShareButtonsForm .= '<label>Posts&nbsp;<input type="checkbox" name="ssba_posts" id="ssba_posts" ' 		 		. ($arrSettings['ssba_posts'] 		== 'Y'   ? 'checked' : NULL) . ' value="Y" style="margin-right: 10px;" /></label>';
+						$htmlShareButtonsForm .= '<label>Categories&#47;Archives&nbsp;<input type="checkbox" name="ssba_cats_archs" id="ssba_cats_archs" '	. ($arrSettings['ssba_cats_archs']	== 'Y'   ? 'checked' : NULL) . ' value="Y" style="margin-right: 10px;" /></label>';
+						$htmlShareButtonsForm .= '<label>Excerpts&nbsp;<input type="checkbox" name="ssba_excerpts" id="ssba_excerpts" '	. ($arrSettings['ssba_excerpts']	== 'Y'   ? 'checked' : NULL) . ' value="Y" style="margin-right: 10px;" /></label>';
 
 						$htmlShareButtonsForm .= '<p class="description">Check all those that you wish to show your share buttons</br>Note you can also show&#47;hide your buttons using &#91;ssba&#93; and &#91;ssba&#95;hide&#93;</p></td>';
 					$htmlShareButtonsForm .= '</tr>';
